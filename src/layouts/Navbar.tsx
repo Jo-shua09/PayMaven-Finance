@@ -3,9 +3,9 @@ import { Button, Button2 } from "../components/ui/Button";
 const Navbar = () => {
 	return (
 		<div className="w-full">
-			<div className="flex items-center section justify-between w-full shadow-md gap-10 flex-wrap md:flex-nowrap">
+			<div data-aos="fade-down" className="flex items-center section justify-between w-full shadow-md gap-10 flex-wrap md:flex-nowrap">
 				<div className="w-full gap-x-3 flex items-center">
-					<img src="logo.svg" alt="logo image" className="w-16 h-16" />
+					<img src="logo.svg" loading="lazy" alt="logo image" className="w-16 h-16" />
 					<span className="text-4xl font-semibold text-gray-900">PayMaven</span>
 				</div>
 
