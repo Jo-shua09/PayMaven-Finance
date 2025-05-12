@@ -1,3 +1,5 @@
+import { Button } from "../components/ui/Button";
+
 const Navbar = () => {
 	return (
 		<div className="w-full">
@@ -7,7 +9,7 @@ const Navbar = () => {
 					<span className="text-4xl font-semibold text-gray-900">PayMaven</span>
 				</div>
 
-				<div className="flex w-full justify-center place-content-center">
+				<div className="flex w-full md:justify-center">
 					<ul className="flex items-center gap-x-14">
 						<li className="font-medium text-3xl cursor-pointer hover:text-purple-500 hover:underline underline-offset-4 text-gray-900">
 							services
@@ -28,9 +30,7 @@ const Navbar = () => {
 					<button className="bg-primary capitalize text-purple-400 px-7 py-5 rounded-md cursor-pointer hover:scale-95 text-3xl font-semibold">
 						login
 					</button>
-					<button className="bg-purple-500 capitalize text-white px-7 py-5 rounded-md cursor-pointer hover:scale-95 text-3xl font-semibold">
-						sign up
-					</button>
+					<Button name="sign up" linkPath="/" />
 				</div>
 			</div>
 		</div>
