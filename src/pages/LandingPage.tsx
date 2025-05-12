@@ -2,6 +2,7 @@ import Banner from "../sections/LandingPage/Banner";
 import Hero from "../sections/LandingPage/Hero";
 import Manage from "../sections/LandingPage/Manage";
 import Monitor from "../sections/LandingPage/Monitor";
+import Pricing from "../sections/LandingPage/Pricing";
 
 const LandingPage = () => {
 	return (
@@ -10,6 +11,7 @@ const LandingPage = () => {
 			<Monitor />
 			<Manage />
 			<Banner />
+			<Pricing />
 		</div>
 	);
 };
