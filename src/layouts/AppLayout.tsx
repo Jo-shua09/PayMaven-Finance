@@ -7,11 +7,11 @@ const AppLayout = () => {
 
 	return (
 		<>
-			<div className={`max-w-[180rem] w-full`}>
+			<div className="w-full max-w-screen-2xl mx-auto">
 				<Navbar />
-				<div className="max-w-[150rem] w-full">
+				<div className="w-full">
 					<Outlet />
-					<footer className={`${location.pathname != "/" ? "hidden" : "block"}`}>
+					<footer className={`${location.pathname !== "/" ? "hidden" : "block"}`}>
 						<Footer />
 					</footer>
 				</div>
@@ -19,5 +19,4 @@ const AppLayout = () => {
 		</>
 	);
 };
-
 export default AppLayout;

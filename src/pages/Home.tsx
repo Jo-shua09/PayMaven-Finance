@@ -1,5 +1,11 @@
+import Hero from "../sections/home/Hero";
+
 const Home = () => {
-	return <div>Home</div>;
+	return (
+		<div className="">
+			<Hero />
+		</div>
+	);
 };
 
 export default Home;
