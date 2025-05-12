@@ -6,19 +6,17 @@ const AppLayout = () => {
 	const location = useLocation();
 
 	return (
-		<div className="w-full max-w-[170rem] mx-auto">
-			<header>
+		<>
+			<div className={`max-w-[180rem] w-full`}>
 				<Navbar />
-			</header>
-			<div className="w-full max-w-[140rem] mx-auto">
-				<main>
+				<div className="max-w-[150rem] w-full">
 					<Outlet />
-				</main>
-				<footer className={`${location.pathname != "/" ? "hidden" : "block"}`}>
-					<Footer />
-				</footer>
+					<footer className={`${location.pathname != "/" ? "hidden" : "block"}`}>
+						<Footer />
+					</footer>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

@@ -1,13 +1,19 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-	content: ["./src/**/*.{html,js}"],
+module.exports = {
+	content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 	theme: {
 		extend: {
 			fontFamily: {
 				head: ["Sarabun", "sans-serif"],
 				text: ["Inter", "sans-serif"],
 			},
+			colors: {
+				primary: "#f4f1fd",
+			},
 		},
 	},
-	plugins: [],
+	// plugins: [require("daisyui")],
+	// daisyui: {
+	// 	themes: ["light"],
+	// },
 };

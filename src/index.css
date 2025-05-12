@@ -4,21 +4,24 @@
 /* INTER FONT */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
+/* TailwindCSS Imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* DaisyUI plugin */
+/* @plugin ("daisyui"); */
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	outline: none;
-	border: none;
 	text-transform: capitalize;
-	transition: all 0.3s ease-in-out linear;
+	transition: all 0.3s ease-in-out;
 }
 body {
-	background-color: #f2f2f2;
+	background-color: #f8f8f8;
 	color: #333;
 	font-family: "Inter", sans-serif;
 }
@@ -29,9 +32,12 @@ html {
 }
 
 .section {
-	padding: 2rem 5%;
+	padding: 1rem 5%;
 }
 
+.section-sec {
+	padding: 5rem 0;
+}
 @media (max-width: 991px) {
 	html {
 		font-size: 55%;
