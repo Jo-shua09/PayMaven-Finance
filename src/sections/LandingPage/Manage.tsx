@@ -1,13 +1,13 @@
-import monitorImage from "/src/assets/images/monitor_hero.jpg";
+import manageImage from "/src/assets/images/manage_hero.jpg";
 import SubSectionsLayout from "../../layouts/SubSectionsLayout";
 
-const Monitor = () => {
+const Manage = () => {
 	return (
 		<div className="">
 			<SubSectionsLayout
-				image={monitorImage}
-				CTitle="monitor"
-				title="payments"
+				image={manageImage}
+				CTitle="manage"
+				title="customers"
 				description="View real-time updates on successful payments, refunds, and other transaction-related activities"
 				buttonTitle="learn more"
 			/>
@@ -15,4 +15,4 @@ const Monitor = () => {
 	);
 };
 
-export default Monitor;
+export default Manage;

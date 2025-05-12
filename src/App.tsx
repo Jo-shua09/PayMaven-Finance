@@ -7,7 +7,7 @@ function App() {
 	useEffect(() => {
 		AOS.init({
 			duration: 1000, // Animation duration (ms)
-			once: true, // Whether animation should happen only once
+			once: false, // Whether animation should happen only once
 			offset: 100, // Offset (in px) from the original trigger point
 		});
 	}, []);

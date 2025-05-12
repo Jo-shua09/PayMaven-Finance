@@ -1,14 +1,13 @@
-// BLUR TEXT ANIMATION
 import { motion } from "framer-motion";
-import React, { useEffect, useRef, useState, useMemo } from "react";
 import type { Transition } from "framer-motion";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 type BlurTextProps = {
 	text?: string;
 	delay?: number;
 	className?: string;
 	animateBy?: "words" | "letters";
-	direction?: "right" | "left";
+	direction?: "top" | "bottom";
 	threshold?: number;
 	rootMargin?: string;
 	animationFrom?: Record<string, string | number>;
@@ -36,7 +35,7 @@ const BlurText: React.FC<BlurTextProps> = ({
 	delay = 200,
 	className = "",
 	animateBy = "words",
-	direction = "right",
+	direction = "top",
 	threshold = 0.1,
 	rootMargin = "0px",
 	animationFrom,
@@ -65,7 +64,7 @@ const BlurText: React.FC<BlurTextProps> = ({
 	}, [threshold, rootMargin]);
 
 	const defaultFrom = useMemo(
-		() => (direction === "right" ? { filter: "blur(10px)", opacity: 0, y: -50 } : { filter: "blur(10px)", opacity: 0, y: 50 }),
+		() => (direction === "top" ? { filter: "blur(10px)", opacity: 0, y: -50 } : { filter: "blur(10px)", opacity: 0, y: 50 }),
 		[direction]
 	);
 
@@ -74,7 +73,7 @@ const BlurText: React.FC<BlurTextProps> = ({
 			{
 				filter: "blur(5px)",
 				opacity: 0.5,
-				y: direction === "right" ? 5 : -5,
+				y: direction === "top" ? 5 : -5,
 			},
 			{ filter: "blur(0px)", opacity: 1, y: 0 },
 		],
@@ -89,11 +88,7 @@ const BlurText: React.FC<BlurTextProps> = ({
 	const times = Array.from({ length: stepCount }, (_, i) => (stepCount === 1 ? 0 : i / (stepCount - 1)));
 
 	return (
-		<p
-			ref={ref}
-			className={`blur-text ${className} flex flex-wrap !normal-case`}
-			style={{ display: "inline-block", textTransform: "none" }}
-		>
+		<p ref={ref} className={`blur-text ${className} flex flex-wrap`}>
 			{elements.map((segment, index) => {
 				const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
@@ -124,4 +119,5 @@ const BlurText: React.FC<BlurTextProps> = ({
 		</p>
 	);
 };
+
 export default BlurText;
