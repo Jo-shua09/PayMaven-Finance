@@ -15,7 +15,9 @@ const SubSectionsLayout = ({ image, title, description, buttonTitle, CTitle }: S
 			<div className="w-full m-auto flex justify-center">
 				<div
 					data-aos="fade-left"
-					className="section-sec  flex items-center flex-wrap-reverse md:flex-nowrap justify-center md:justify-between gap-x-20 gap-y-10 w-full"
+					className={`${
+						CTitle == "manage" ? " flex-wrap" : "flex-wrap-reverse"
+					} section-sec flex items-center md:flex-nowrap justify-center md:justify-between gap-x-20 gap-y-10 w-full`}
 				>
 					<div className={`${CTitle == "manage" ? "hidden" : "flex"}  md:flex-[3] w-full md:place-content-end`}>
 						<img
