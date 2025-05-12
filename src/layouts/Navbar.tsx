@@ -1,4 +1,4 @@
-import { Button } from "../components/ui/Button";
+import { Button, Button2 } from "../components/ui/Button";
 
 const Navbar = () => {
 	return (
@@ -11,25 +11,23 @@ const Navbar = () => {
 
 				<div className="flex w-full md:justify-center">
 					<ul className="flex items-center gap-x-14">
-						<li className="font-medium text-3xl cursor-pointer hover:text-purple-500 hover:underline underline-offset-4 text-gray-900">
+						<li className="font-medium text-3xl cursor-pointer hover:text-secondary hover:underline underline-offset-4 text-gray-900">
 							services
 						</li>
-						<li className="font-medium text-3xl cursor-pointer hover:text-purple-500 hover:underline underline-offset-4 text-gray-900">
+						<li className="font-medium text-3xl cursor-pointer hover:text-secondary hover:underline underline-offset-4 text-gray-900">
 							solutions
 						</li>
-						<li className="font-medium text-3xl cursor-pointer hover:text-purple-500 hover:underline underline-offset-4 text-gray-900">
+						<li className="font-medium text-3xl cursor-pointer hover:text-secondary hover:underline underline-offset-4 text-gray-900">
 							pricing
 						</li>
-						<li className="font-medium text-3xl cursor-pointer hover:text-purple-500 hover:underline underline-offset-4 text-gray-900">
+						<li className="font-medium text-nowrap text-3xl cursor-pointer hover:text-secondary hover:underline underline-offset-4 text-gray-900">
 							help center
 						</li>
 					</ul>
 				</div>
 
 				<div className="w-full flex gap-x-10 md:place-content-end">
-					<button className="bg-primary capitalize text-purple-400 px-7 py-5 rounded-md cursor-pointer hover:scale-95 text-3xl font-semibold">
-						login
-					</button>
+					<Button2 name="login" linkPath="/" />
 					<Button name="sign up" linkPath="/" />
 				</div>
 			</div>
