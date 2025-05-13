@@ -6,7 +6,7 @@ import Pricing from "../sections/LandingPage/Pricing";
 
 const LandingPage = () => {
 	return (
-		<div className="pb-[100rem]">
+		<div className="w-full">
 			<Hero />
 			<Monitor />
 			<Manage />
