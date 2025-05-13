@@ -2,10 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout";
 import LandingPage from "../pages/LandingPage";
 import SignUp_Login from "../pages/SignUp_Login";
+import ScrollToTop from "../components/ScrollToTop";
 
 const AppRouter = () => {
 	return (
 		<Router>
+			<ScrollToTop />
 			<Routes>
 				<Route element={<AppLayout />}>
 					<Route path="/" element={<LandingPage />} />
