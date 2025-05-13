@@ -3,7 +3,7 @@ import DecryptedText from "../../components/animations/DecryptedText";
 const Banner = () => {
 	return (
 		<div className="w-full section-sec">
-			<div data-aos="fade-" className="w-full flex py-32 items-center gap-16 flex-col justify-center bg-primary rounded-2xl">
+			<div data-aos="fade-up" className="w-full flex py-32 items-center gap-16 flex-col justify-center bg-primary rounded-2xl">
 				<div className="m-auto flex items-center justify-center lg:w-[45%] w-[80%] place-content-center">
 					<DecryptedText
 						text="Simplify your business payments with our intuitive tool. Manage, track, and  optimize your financial transactions effortlessly.
