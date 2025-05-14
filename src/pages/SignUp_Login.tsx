@@ -21,7 +21,7 @@ const SignUp_Login = () => {
 				</div>
 
 				<div className="sm:flex hidden w-full h-full md:flex-1">
-					<img src={signImage} alt="Get started image" className="w-full h-full object-cover" />
+					<img data-aos="flip-down" src={signImage} alt="Get started image" className="w-full h-full object-cover" />
 				</div>
 			</div>
 		</div>
