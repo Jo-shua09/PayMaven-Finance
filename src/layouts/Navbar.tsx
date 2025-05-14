@@ -94,8 +94,8 @@ const Navbar = () => {
 
 					{/* CTA Buttons */}
 					<div className="flex gap-x-10">
-						<Button2 name="login" linkPath="/" />
-						<Button name="sign up" linkPath="/" />
+						<Button2 name="login" linkPath="/login" />
+						<Button name="sign up" linkPath="/sign-up" />
 					</div>
 				</div>
 			)}
