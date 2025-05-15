@@ -49,7 +49,6 @@ const SignUp_Login = () => {
 										</label>
 										<PhoneInput
 											country={"us"}
-											value={""}
 											containerClass="w-full"
 											inputStyle={{ width: "100%", height: "5.5rem", background: "#BCC1CA" }}
 											inputClass="w-full w-[100%] mt-1 text-black focus:border border-secondary font-medium text-base px-4 py-3 rounded-md focus:outline-none placeholder:text-gray"
@@ -199,7 +198,13 @@ const SignUp_Login = () => {
 				</div>
 
 				<div className="sm:flex hidden w-[55rem] h-full">
-					<img data-aos="fade-left" loading="lazy" src={signImage} alt="Get started image" className="w-full h-full object-cover" />
+					<img
+						data-aos="fade-left"
+						loading="lazy"
+						src={signImage}
+						alt="Get started image"
+						className="w-full h-full object-cover"
+					/>
 				</div>
 			</div>
 		</div>
