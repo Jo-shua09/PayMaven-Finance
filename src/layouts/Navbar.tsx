@@ -34,7 +34,7 @@ const Navbar = () => {
 							aria-label="Toggle menu"
 						>
 							<span
-								className={`h-[.45rem]  w-12 bg-black rounded-xl transition-all duration-300 ${
+								className={`h-[.5rem]  w-12 bg-black rounded-xl transition-all duration-300 ${
 									isOpen ? "rotate-[43deg] translate-y-2" : ""
 								}`}
 							></span>
