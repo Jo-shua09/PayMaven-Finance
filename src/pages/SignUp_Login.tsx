@@ -15,7 +15,7 @@ const SignUp_Login = () => {
 	return (
 		<div className="w-full mx-auto m-auto">
 			<div className="w-full md:section -mt-20 md:-mt-10 !px-[3%] min-h-screen h-full justify-center flex items-center gap-20 flex-wrap sm:flex-nowrap">
-				<div className="md:w-1/3 w-full">
+				<div className="md:w-1/3 w-full overflow-y-hidden max-h-screen h-[90%]">
 					{location.pathname == "/sign-up" ? (
 						<div data-aos="fade-right" className="w-full max-h-screen h-[90%]">
 							<div className="flex flex-col items-center justify-center place-content-center">
