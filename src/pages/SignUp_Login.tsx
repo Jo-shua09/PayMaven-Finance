@@ -1,11 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import signImage from "/src/assets/images/signup_cover.jpg";
+import google from "/src/assets/images/google.png";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { RemoveRedEyeSharp } from "@mui/icons-material";
+import { RemoveRedEyeSharp, VisibilityOff } from "@mui/icons-material";
+import { useState } from "react";
 
 const SignUp_Login = () => {
 	const location = useLocation();
+	const [showPassword, setShowPassword] = useState(false);
+
+	const togglePassword = () => setShowPassword((prev) => !prev);
 
 	return (
 		<div className="w-full mx-auto m-auto">
@@ -32,6 +37,7 @@ const SignUp_Login = () => {
 										<input
 											type="email"
 											name="email"
+											required
 											className="bg-[#BCC1CA] normal-case mt-1 focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem] md:h-[5rem]"
 											placeholder="example@gmail.com"
 										/>
@@ -57,13 +63,24 @@ const SignUp_Login = () => {
 										</label>
 										<div className="w-full relative">
 											<input
-												type="password"
+												type={showPassword ? "text" : "password"}
 												name="password"
+												required
 												className="bg-[#BCC1CA] normal-case mt-1 mb-5 focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem] md:h-[5rem]"
-												placeholder="enter at least 8+ characters "
+												placeholder="enter at least 8+ characters"
 											/>
 
-											<RemoveRedEyeSharp className="!text-4xl absolute right-4 top-1/4 cursor-pointer hover:text-secondary" />
+											{showPassword ? (
+												<RemoveRedEyeSharp
+													className="!text-4xl absolute right-4 top-1/4 cursor-pointer hover:text-secondary"
+													onClick={togglePassword}
+												/>
+											) : (
+												<VisibilityOff
+													className="!text-4xl absolute right-4 top-1/4 cursor-pointer hover:text-secondary"
+													onClick={togglePassword}
+												/>
+											)}
 										</div>
 									</div>
 
@@ -75,22 +92,18 @@ const SignUp_Login = () => {
 								</form>
 
 								<div className="flex pl-8 flex-col gap-y-3 mt-8 !text-left !justify-start">
-									<h3 className="text-3xl font-semibold normal-case">Continue with</h3>
+									<h3 className="text-3xl font-semibold normal-case text-center">Continue with</h3>
 									<div className="flex gap-x-5 w-full">
-										<img
-											src=""
-											alt="google logo"
-											className="w-14 h-14 object-cover flex items-center  px-10 py-2 rounded-xl bg-[#BCC1CA] hover:scale-95 cursor-pointer"
-										/>
-										<img
-											src=""
-											alt="google logo"
-											className="w-14 h-14 object-cover flex items-center  px-10 py-2 rounded-xl bg-[#BCC1CA] hover:scale-95 cursor-pointer"
-										/>
+										<div className="rounded-xl bg-[#BCC1CA] hover:scale-95 cursor-pointer px-14">
+											<img src={google} alt="google logo" className="w-20 h-20 object-cover flex items-center  " />
+										</div>
+										<div className="rounded-xl bg-[#BCC1CA] hover:scale-95 cursor-pointer px-14">
+											<img src={google} alt="google logo" className="w-20 h-20 object-cover flex items-center  " />
+										</div>
 									</div>
 								</div>
 
-								<div className="mt-20 w-full text-center">
+								<div className="mt-10 w-full text-center">
 									<p className="text-2xl font-medium space-x-2 normal-case">
 										Already have an account?{" "}
 										<Link to="/login">
@@ -121,6 +134,7 @@ const SignUp_Login = () => {
 										<input
 											type="email"
 											name="email"
+											required
 											className="bg-[#BCC1CA] normal-case mt-1 focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem] md:h-[5rem]"
 											placeholder="example@gmail.com"
 										/>
@@ -131,13 +145,24 @@ const SignUp_Login = () => {
 										</label>
 										<div className="w-full relative">
 											<input
-												type="password"
+												type={showPassword ? "text" : "password"}
 												name="password"
+												required
 												className="bg-[#BCC1CA] normal-case mt-1 mb-5 focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem] md:h-[5rem]"
-												placeholder="Enter at least 8+ characters "
+												placeholder="enter at least 8+ characters"
 											/>
 
-											<RemoveRedEyeSharp className="!text-4xl absolute right-4 top-1/4 cursor-pointer hover:text-secondary" />
+											{showPassword ? (
+												<RemoveRedEyeSharp
+													className="!text-4xl absolute right-4 top-1/4 cursor-pointer hover:text-secondary"
+													onClick={togglePassword}
+												/>
+											) : (
+												<VisibilityOff
+													className="!text-4xl absolute right-4 top-1/4 cursor-pointer hover:text-secondary"
+													onClick={togglePassword}
+												/>
+											)}
 										</div>
 									</div>
 
@@ -149,18 +174,14 @@ const SignUp_Login = () => {
 								</form>
 
 								<div className="flex pl-8 flex-col gap-y-3 mt-8 !text-left !justify-start">
-									<h3 className="text-3xl font-semibold normal-case">Continue with</h3>
+									<h3 className="text-3xl font-semibold normal-case text-center">Continue with</h3>
 									<div className="flex gap-x-5 w-full">
-										<img
-											src=""
-											alt="google logo"
-											className="w-14 h-14 object-cover flex items-center  px-10 py-2 rounded-xl bg-[#BCC1CA] hover:scale-95 cursor-pointer"
-										/>
-										<img
-											src=""
-											alt="google logo"
-											className="w-14 h-14 object-cover flex items-center  px-10 py-2 rounded-xl bg-[#BCC1CA] hover:scale-95 cursor-pointer"
-										/>
+										<div className="rounded-xl bg-[#BCC1CA] hover:scale-95 cursor-pointer px-14">
+											<img src={google} alt="google logo" className="w-20 h-20 object-cover flex items-center  " />
+										</div>
+										<div className="rounded-xl bg-[#BCC1CA] hover:scale-95 cursor-pointer px-14">
+											<img src={google} alt="google logo" className="w-20 h-20 object-cover flex items-center  " />
+										</div>
 									</div>
 								</div>
 
