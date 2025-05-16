@@ -24,6 +24,7 @@ body {
 	background-color: #f8f8f8;
 	color: #333;
 	font-family: "Inter", sans-serif;
+	overflow-x: hidden;
 }
 html {
 	scroll-behavior: smooth;
