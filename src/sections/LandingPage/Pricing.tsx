@@ -1,5 +1,6 @@
 import { CheckCircle, CloseRounded } from "@mui/icons-material";
 import { Prices } from "../../assets/dummyData";
+import { Link } from "react-router-dom";
 
 const Pricing = () => {
 	return (
@@ -45,13 +46,15 @@ const Pricing = () => {
 								</div>
 							))}
 						</div>
-						<button
-							className={`${
-								price.type == "popular" ? "bg-secondary text-white border-none" : ""
-							} w-full bg-primary hover:scale-95 text-3xl mb-10 cursor-pointer border border-secondary text-secondary font-semibold py-6 px-7 rounded-xl capitalize`}
-						>
-							{price.buttonText}
-						</button>
+						<Link to={price.linkPath}>
+							<button
+								className={`${
+									price.type == "popular" ? "bg-secondary text-white border-none" : ""
+								} w-full bg-primary hover:scale-95 text-3xl mb-10 cursor-pointer border border-secondary text-secondary font-semibold py-6 px-7 rounded-xl capitalize`}
+							>
+								{price.buttonText}
+							</button>
+						</Link>
 					</div>
 				))}
 			</div>

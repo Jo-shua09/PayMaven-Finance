@@ -8,6 +8,7 @@ interface PricesProps {
 	payDura: string;
 	desc: string[];
 	buttonText: string;
+	linkPath: string;
 }
 
 export const Prices: PricesProps[] = [
@@ -21,6 +22,7 @@ export const Prices: PricesProps[] = [
 		payDura: "payment",
 		desc: ["Process Unlimited Payments", "Activate Three Business Services", " Analyze and Predict Financial Trends"],
 		buttonText: "get started",
+		linkPath: "/sign-up",
 	},
 	{
 		id: 2,
@@ -32,6 +34,7 @@ export const Prices: PricesProps[] = [
 		payDura: "payment",
 		desc: ["Process Unlimited Payments", "Activate Three Business Services", "Analyze and Predict Financial Trends"],
 		buttonText: "get started",
+		linkPath: "/sign-up",
 	},
 	{
 		id: 3,
@@ -43,5 +46,6 @@ export const Prices: PricesProps[] = [
 		payDura: "month",
 		desc: ["Process Unlimited Payments", "Activate Three Business Services", "Analyze and Predict Financial Trends"],
 		buttonText: "get started",
+		linkPath: "/sign-up",
 	},
 ];

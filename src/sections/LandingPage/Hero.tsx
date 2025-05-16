@@ -17,7 +17,7 @@ const Hero = () => {
 						Payment processing platform that facilitates transactions between businesses and their customers.
 					</p>
 					<div data-aos="fade-right" data-aos-delay="450" className="">
-						<Button2 name="open account" linkPath="/" />
+						<Button2 name="open account" linkPath="/sign-up" />
 					</div>
 				</div>
 
