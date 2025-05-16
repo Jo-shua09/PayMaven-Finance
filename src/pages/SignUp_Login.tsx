@@ -134,10 +134,10 @@ const SignUp_Login = () => {
 										<img src={google} alt="Google" className="w-[5rem] h-[5rem] object-cover" />
 									</div>
 									<div
-										className="bg-[#BCC1CA] px-10 flex items-center rounded-xl cursor-not-allowed	 hover:scale-95"
-										onClick={() =>
-											isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
-										}
+										className="bg-[#BCC1CA] px-10 flex items-center rounded-xl cursor-not-allowed hover:scale-95"
+										// onClick={() =>
+										// 	isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
+										// }
 									>
 										<img src={apple} alt="Google" className="w-[7rem] h-[6rem] object-cover" />
 									</div>
