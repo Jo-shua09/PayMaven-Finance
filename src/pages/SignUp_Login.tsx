@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import signImage from "/src/assets/images/signup_cover.jpg";
 import google from "/src/assets/images/google.png";
+import apple from "/src/assets/images/apple.png";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { RemoveRedEyeSharp, VisibilityOff } from "@mui/icons-material";
@@ -192,16 +193,16 @@ const SignUp_Login = () => {
 								<h3 className="text-3xl font-semibold mb-4"> {isSignUp ? "Sign up with" : "Sign in with"}</h3>
 								<div className="flex justify-center gap-5">
 									<div
-										className="bg-[#BCC1CA] px-10 rounded-xl cursor-pointer hover:scale-95"
+										className="bg-[#BCC1CA] px-10 flex items-center rounded-xl cursor-pointer hover:scale-95"
 										onClick={isSignUp ? signUpWithGoogle : signInWithGoogle}
 									>
 										<img src={google} alt="Google" className="w-[5rem] h-[5rem] object-cover" />
 									</div>
 									<div
-										className="bg-[#BCC1CA] px-10 rounded-xl cursor-pointer hover:scale-95"
-										onClick={isSignUp ? signUpWithGoogle : signInWithGoogle}
+										className="bg-[#BCC1CA] px-10 flex items-center rounded-xl cursor-not-allowed	 hover:scale-95"
+										// onClick={isSignUp ? signUpWithGoogle : signInWithGoogle}
 									>
-										<img src={google} alt="Google" className="w-[5rem] h-[5rem] object-cover" />
+										<img src={apple} alt="Google" className="w-[7rem] h-[6rem] object-cover" />
 									</div>
 								</div>
 							</div>
