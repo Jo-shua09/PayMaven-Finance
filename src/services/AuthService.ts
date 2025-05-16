@@ -2,17 +2,14 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithP
 import { auth, googleProvider } from "../config/Firebase";
 import { toast } from "react-toastify";
 
-export const signUp = async ({
-	email,
-	password,
-	navigate,
-	setLoading,
-}: {
+type AuthProps = {
 	email: string;
 	password: string;
 	navigate: (path: string) => void;
 	setLoading: (loading: boolean) => void;
-}) => {
+};
+
+export const signUp = async ({ email, password, navigate, setLoading }: AuthProps) => {
 	setLoading(true);
 	try {
 		await createUserWithEmailAndPassword(auth, email, password);
@@ -25,17 +22,7 @@ export const signUp = async ({
 	}
 };
 
-export const signIn = async ({
-	email,
-	password,
-	navigate,
-	setLoading,
-}: {
-	email: string;
-	password: string;
-	navigate: (path: string) => void;
-	setLoading: (loading: boolean) => void;
-}) => {
+export const signIn = async ({ email, password, navigate, setLoading }: AuthProps) => {
 	setLoading(true);
 	try {
 		await signInWithEmailAndPassword(auth, email, password);
@@ -48,13 +35,12 @@ export const signIn = async ({
 	}
 };
 
-export const signUpWithGoogle = async ({
-	navigate,
-	setLoading,
-}: {
+type GoogleAuthProps = {
 	navigate: (path: string) => void;
 	setLoading: (loading: boolean) => void;
-}) => {
+};
+
+export const signUpWithGoogle = async ({ navigate, setLoading }: GoogleAuthProps) => {
 	setLoading(true);
 	try {
 		await signInWithPopup(auth, googleProvider);
@@ -67,13 +53,7 @@ export const signUpWithGoogle = async ({
 	}
 };
 
-export const signInWithGoogle = async ({
-	navigate,
-	setLoading,
-}: {
-	navigate: (path: string) => void;
-	setLoading: (loading: boolean) => void;
-}) => {
+export const signInWithGoogle = async ({ navigate, setLoading }: GoogleAuthProps) => {
 	setLoading(true);
 	try {
 		await signInWithPopup(auth, googleProvider);
