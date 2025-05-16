@@ -2,6 +2,7 @@ import AppRouter from "./routes.tsx/AppRouter";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
 
 function App() {
 	useEffect(() => {
@@ -15,6 +16,7 @@ function App() {
 	return (
 		<>
 			<AppRouter />
+			<ToastContainer position="top-right" autoClose={2000} toastClassName="text-2xl font-medium" />
 		</>
 	);
 }

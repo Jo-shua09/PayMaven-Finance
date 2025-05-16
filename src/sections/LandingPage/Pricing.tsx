@@ -1,8 +1,6 @@
 import { CheckCircle, CloseRounded } from "@mui/icons-material";
 import { Prices } from "../../assets/dummyData";
 
-console.log(Prices);
-
 const Pricing = () => {
 	return (
 		<div className="w-full section-sec">
@@ -16,7 +14,9 @@ const Pricing = () => {
 						data-aos="fade-right"
 						data-aos-delay="50"
 						key={price.id}
-						className={`${price.type == "popular" ? "border-secondary border-2" : ""} text-center w-full rounded-2xl bg-primary px-10`}
+						className={`${
+							price.type == "popular" ? "border-secondary border-2" : ""
+						} text-center w-full rounded-2xl bg-primary px-10`}
 					>
 						<span
 							className={`${
