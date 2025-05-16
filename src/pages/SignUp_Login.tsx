@@ -6,108 +6,31 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { RemoveRedEyeSharp, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../config/Firebase";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { signIn, signInWithGoogle, signUp, signUpWithGoogle } from "../services/AuthService";
 
 const SignUp_Login = () => {
 	const location = useLocation();
-	const [showPassword, setShowPassword] = useState(false);
 	const [email, setEmail] = useState("");
+	const [showPassword, setShowPassword] = useState(false);
+	const [loading, setLoading] = useState(false);
 	const [password, setPassword] = useState("");
-	const Navigate = useNavigate();
+	const navigate = useNavigate();
+	const [phone, setPhone] = useState("");
+	const [phoneError, setPhoneError] = useState("");
 
-	const togglePassword = () => setShowPassword((prev) => !prev);
-
-	const signUp = async (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		try {
-			await createUserWithEmailAndPassword(auth, email, password);
-			console.log("User signed up successfully");
-			toast.success("Account created successfully!");
-			setTimeout(() => Navigate("/login"), 2000);
-		} catch (error) {
-			if (error && typeof error === "object" && "code" in error) {
-				console.error("Error signing up:", (error as { code: string }).code);
-				toast.error("Failed to sign up: " + (error as { code: string }).code);
-			} else {
-				console.error("Error signing up:", error);
-				toast.error("Failed to sign up.");
-			}
+
+		if (isSignUp) {
+			await signUp({ email, password, navigate, setLoading });
+		} else {
+			await signIn({ email, password, navigate, setLoading });
 		}
 	};
-
-	const signIn = async (e: React.FormEvent) => {
-		e.preventDefault();
-		try {
-			await signInWithEmailAndPassword(auth, email, password);
-			toast.success("Signed in successfully!");
-			setTimeout(() => Navigate("/dashboard"), 1500);
-		} catch (error) {
-			if (error && typeof error === "object" && "code" in error) {
-				const errorCode = (error as { code: string }).code;
-				console.error("Error signing in:", errorCode);
-
-				switch (errorCode) {
-					case "password mismatch":
-						toast.error("Wrong password. Please try again.");
-						console.log(password);
-						break;
-
-					case "auth/invalid-credential":
-						toast.info("No user found. Please sign up first.");
-						setTimeout(() => Navigate("/sign-up"), 1500);
-						break;
-
-					case "auth/invalid-email":
-						toast.error("Invalid email address.");
-						break;
-
-					default:
-						toast.error("Failed to sign in: " + errorCode);
-						break;
-				}
-			} else {
-				toast.error("Unexpected error occurred.");
-			}
-		}
-	};
-
-	const signUpWithGoogle = async () => {
-		try {
-			await signInWithPopup(auth, googleProvider);
-			toast.success("Account created successfully!");
-			setTimeout(() => Navigate("/dashboard"), 2000);
-			console.log("User signed up with Google successfully");
-		} catch (error) {
-			console.error("Error with Google sign up:", error);
-		}
-	};
-
-	const signInWithGoogle = async () => {
-		try {
-			await signInWithPopup(auth, googleProvider);
-			toast.success("Signed in successfully!");
-			setTimeout(() => Navigate(""), 1500);
-			console.log("User signed in with Google successfully");
-		} catch (error) {
-			console.error("Error with Google sign in:", error);
-		}
-	};
-
-	// const logout = async () => {
-	// 	try {
-	// 		await signOut(auth);
-	// 		console.log("User signed out successfully");
-	// 		toast.success("Signed out successfully!");
-	// 		setTimeout(() => Navigate(""), 1500);
-	// 	} catch (error) {
-	// 		console.error("Error signing out:", error);
-	// 	}
-	// };
 
 	const isSignUp = location.pathname === "/sign-up";
+
+	const togglePassword = () => setShowPassword((prev) => !prev);
 
 	return (
 		<div className="w-full mx-auto">
@@ -125,7 +48,7 @@ const SignUp_Login = () => {
 								<span className="text-secondary">PayMaven</span> account
 							</h3>
 
-							<form data-aos="fade-right" className="w-[95%] space-y-7" onSubmit={isSignUp ? signUp : signIn}>
+							<form data-aos="fade-right" className="w-[95%] space-y-7" onSubmit={handleSubmit}>
 								<div>
 									<label className="pl-1 text-[1.7rem] font-semibold">Email</label>
 									<input
@@ -143,11 +66,17 @@ const SignUp_Login = () => {
 										<label className="pl-1 text-[1.7rem] font-semibold">Phone number</label>
 										<PhoneInput
 											country={"us"}
+											value={phone}
+											onChange={(phone) => {
+												setPhone(phone);
+												setPhoneError("");
+											}}
 											containerClass="w-full"
 											inputStyle={{ width: "100%", height: "5.5rem", background: "#BCC1CA" }}
 											inputClass="mt-1 text-black font-medium text-base px-4 py-3 rounded-md placeholder:text-gray"
 											placeholder="123 456 7890"
 										/>
+										{phoneError && <p className="text-red-600 text-sm mt-1">{phoneError}</p>}
 									</div>
 								)}
 
@@ -176,31 +105,39 @@ const SignUp_Login = () => {
 									</div>
 								</div>
 
-								<input
-									type="submit"
-									value={isSignUp ? "Sign up" : "Sign in"}
-									className="bg-secondary text-white w-full rounded-xl cursor-pointer hover:scale-95 text-3xl font-semibold h-[5.5rem]"
-								/>
+								{loading ? (
+									<button
+										disabled
+										className="bg-secondary text-white w-full rounded-xl cursor-not-allowed text-3xl font-semibold h-[5.5rem] flex items-center justify-center opacity-70"
+									>
+										<span className="border-t-2 border-white rounded-full p-7 animate-spin"></span>
+									</button>
+								) : (
+									<button
+										type="submit"
+										className="bg-secondary text-white w-full rounded-xl cursor-pointer hover:scale-95 text-3xl font-semibold h-[5.5rem] flex items-center justify-center"
+									>
+										{isSignUp ? "Sign up" : "Sign in"}
+									</button>
+								)}
 							</form>
-
-							{/* <div className="text-center mt-6 text-2xl">
-								<button onClick={logout} className="underline">
-									Logout
-								</button>
-							</div> */}
 
 							<div className="mt-10 text-center w-full">
 								<h3 className="text-3xl font-semibold mb-4"> {isSignUp ? "Sign up with" : "Sign in with"}</h3>
 								<div className="flex justify-center gap-5">
 									<div
 										className="bg-[#BCC1CA] px-10 flex items-center rounded-xl cursor-pointer hover:scale-95"
-										onClick={isSignUp ? signUpWithGoogle : signInWithGoogle}
+										onClick={() =>
+											isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
+										}
 									>
 										<img src={google} alt="Google" className="w-[5rem] h-[5rem] object-cover" />
 									</div>
 									<div
 										className="bg-[#BCC1CA] px-10 flex items-center rounded-xl cursor-not-allowed	 hover:scale-95"
-										// onClick={isSignUp ? signUpWithGoogle : signInWithGoogle}
+										onClick={() =>
+											isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
+										}
 									>
 										<img src={apple} alt="Google" className="w-[7rem] h-[6rem] object-cover" />
 									</div>
