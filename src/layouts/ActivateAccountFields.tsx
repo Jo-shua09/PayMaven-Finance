@@ -18,7 +18,16 @@ const ActivateAccountFields = () => {
 		password: "",
 	});
 
-	const handleChange = (e) => {
+	const stepMessages = {
+		2: "Business info saved, moving to Owner Info.",
+		3: "Owner info saved, let's add bank details.",
+		4: "Bank info saved, now secure your account.",
+		5: "Account secured, time to review everything.",
+	};
+
+	toast.success(stepMessages[step as keyof typeof stepMessages]);
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
@@ -41,16 +50,13 @@ const ActivateAccountFields = () => {
 	};
 
 	return (
-		<div className="w-full section-sec">
+		<div className="w-[90%] m-auto section-sec">
 			<h2 data-aos="fade-right" className="text-5xl font-semibold text-nowrap">
 				activate account
 			</h2>
-			<div className="flex-[4] mt-24 flex gap-8 w-full">
+			<div className="flex-[2] mt-24 flex gap-8 w-full">
 				<ActivateAccountStepper currentStep={step} />
-				<div className="w-full space-y-6 flex-[4]">
-					{`$	{toast.notify("Collecting this information to ensure the security and
-					verify your identity")}`}
-
+				<div className="w-full space-y-6 flex-[6]">
 					{renderForm()}
 
 					<div className="flex items-center space-x-10 place-content-end">
@@ -63,9 +69,11 @@ const ActivateAccountFields = () => {
 								Back
 							</button>
 						)}
-						{step <= 5 && (
+						{step < 5 && (
 							<button
-								onClick={() => setStep(step + 1)}
+								onClick={() => {
+									setStep(step + 1);
+								}}
 								className="bg-secondary flex items-center gap-x-3 text-2xl capitalize font-semibold text-white px-5 py-6 hover:scale-95 rounded-md"
 							>
 								continue
