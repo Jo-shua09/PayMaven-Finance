@@ -8,7 +8,7 @@ const Navbar = () => {
 	// Close menu on scroll
 	useEffect(() => {
 		const handleScroll = () => setIsOpen(false);
-		const handleResize = () => setIsMobile(window.innerWidth < 650);
+		const handleResize = () => setIsMobile(window.innerWidth < 836);
 
 		window.addEventListener("scroll", handleScroll);
 		window.addEventListener("resize", handleResize);
@@ -38,9 +38,15 @@ const Navbar = () => {
 									isOpen ? "rotate-[43deg] translate-y-2" : ""
 								}`}
 							></span>
-							<span className={`h-[.4rem]  w-7 bg-black rounded-xl transition-all duration-300 ${isOpen ? "opacity-0" : ""}`}></span>
 							<span
-								className={`h-2  w-12 bg-black rounded-xl transition-all duration-300 ${isOpen ? "-rotate-[43deg] -translate-y-2" : ""}`}
+								className={`h-[.4rem]  w-7 bg-black rounded-xl transition-all duration-300 ${
+									isOpen ? "opacity-0" : ""
+								}`}
+							></span>
+							<span
+								className={`h-2  w-12 bg-black rounded-xl transition-all duration-300 ${
+									isOpen ? "-rotate-[43deg] -translate-y-2" : ""
+								}`}
 							></span>
 						</button>
 
@@ -55,7 +61,10 @@ const Navbar = () => {
 					</div>
 
 					{isOpen && (
-						<ul data-aos="fade-up" className="flex inset-0 bg-[#f8f8f8] h-screen justify-center flex-col items-center space-y-10">
+						<ul
+							data-aos="fade-up"
+							className="flex inset-0 bg-[#f8f8f8] h-screen justify-center flex-col items-center space-y-10"
+						>
 							<li className="font-medium text-3xl cursor-pointer hover:text-secondary hover:underline underline-offset-4 text-gray-900">
 								services
 							</li>
@@ -85,7 +94,7 @@ const Navbar = () => {
 						{["services", "solutions", "pricing", "help center"].map((item) => (
 							<li
 								key={item}
-								className="font-medium text-3xl cursor-pointer text-gray-900 hover:text-secondary hover:underline underline-offset-4"
+								className="font-medium text-3xl cursor-pointer text-gray-900 text-nowrap hover:text-secondary hover:underline underline-offset-4"
 							>
 								{item}
 							</li>

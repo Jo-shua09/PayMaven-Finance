@@ -14,8 +14,8 @@ const ActivateAccountStepper = ({ currentStep }: { currentStep: number }) => {
 	];
 
 	return (
-		<div className="w-full  flex-[2]">
-			<div data-aos="fade-up" data-aos-delay="200" className="flex flex-col items-start space-y-4">
+		<div className="w-full flex-[2]">
+			<div data-aos="fade-up" className="flex flex-col items-start space-y-4">
 				{steps.map((item, index) => (
 					<div key={index} className="flex items-start space-x-5">
 						<div className="flex flex-col items-center">

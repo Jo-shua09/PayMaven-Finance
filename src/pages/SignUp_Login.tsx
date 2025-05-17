@@ -33,9 +33,9 @@ const SignUp_Login = () => {
 	const togglePassword = () => setShowPassword((prev) => !prev);
 
 	return (
-		<div className="w-full mx-auto">
-			<div className="w-full md:section min-h-screen flex items-center justify-center gap-20 flex-wrap sm:flex-nowrap px-[3%] -mt-20 md:-mt-10">
-				<div className="md:w-1/3 w-full max-h-screen h-[90%] overflow-y-hidden">
+		<div className="w-full mx-auto  max-h-screen h-full">
+			<div className="w-full md:section min-h-[98vh] flex items-center justify-center gap-20 flex-wrap sm:flex-nowrap px-[3%] -mt-20 md:-mt-10">
+				<div className="md:w-1/3 w-full h-[90%] overflow-y-hidden">
 					<div data-aos="fade-right" className="w-full h-full">
 						<div className="flex flex-col items-center justify-center">
 							<div className="flex items-center gap-x-3 mb-10">

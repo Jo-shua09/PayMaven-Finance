@@ -8,7 +8,13 @@ const AppLayout = () => {
 	return (
 		<>
 			<div className="w-full max-w-screen-2xl mx-auto">
-				<nav className={`${location.pathname !== "/" ? "hidden" : "block"}`}>
+				<nav
+					className={`${
+						location.pathname !== "/" && location.pathname !== "/login" && location.pathname !== "/sign-up"
+							? "hidden"
+							: "block"
+					}`}
+				>
 					<Navbar />
 				</nav>
 				<div className="w-full">
