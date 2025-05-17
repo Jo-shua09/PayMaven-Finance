@@ -1,10 +1,10 @@
-import Banner from "../sections/LandingPage/Banner";
-import Hero from "../sections/LandingPage/Hero";
-import Manage from "../sections/LandingPage/Manage";
-import Monitor from "../sections/LandingPage/Monitor";
-import Pricing from "../sections/LandingPage/Pricing";
+import Banner from "../sections/landingPage/Banner";
+import Hero from "../sections/landingPage/Hero";
+import Manage from "../sections/landingPage/Manage";
+import Monitor from "../sections/landingPage/Monitor";
+import Pricing from "../sections/landingPage/Pricing";
 
-const LandingPage = () => {
+const landingPage = () => {
 	return (
 		<div className="w-full">
 			<Hero />
@@ -16,4 +16,4 @@ const LandingPage = () => {
 	);
 };
 
-export default LandingPage;
+export default landingPage;

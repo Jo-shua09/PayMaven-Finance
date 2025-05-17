@@ -1,12 +1,15 @@
 import ActivateAccountSidebar from "../layouts/ActivateAccountSidebar";
-import Header from "../layouts/Header";
+import ActivateAccountHeader from "../layouts/ActivateAccountHeader";
 
 const ActivateAccount = () => {
 	return (
 		<div className="">
-			<Header />
-			<div className="">
-				<ActivateAccountSidebar />
+			<ActivateAccountHeader />
+			<div className="flex items-center gap-10 section-sec">
+				<div className="flex-[2] w-full">
+					<ActivateAccountSidebar />
+				</div>
+				<div className="flex-[4] w-full"></div>
 			</div>
 		</div>
 	);

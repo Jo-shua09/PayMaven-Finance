@@ -1,6 +1,6 @@
 import { QuestionMark } from "@mui/icons-material";
 
-const Header = () => {
+const ActivateAccountHeader = () => {
 	return (
 		<div data-aos="fade-down" className="w-full section shadow-md">
 			<div className="w-full flex items-center py-3 justify-between">
@@ -14,4 +14,4 @@ const Header = () => {
 	);
 };
 
-export default Header;
+export default ActivateAccountHeader;
