@@ -14,7 +14,7 @@ export const signUp = async ({ email, password, navigate, setLoading }: AuthProp
 	try {
 		await createUserWithEmailAndPassword(auth, email, password);
 		toast.success("Account created successfully!");
-		setTimeout(() => navigate("/login"), 1000);
+		setTimeout(() => navigate("/activate-account"), 1000);
 	} catch (error: unknown) {
 		handleError(error, navigate);
 	} finally {
@@ -45,7 +45,7 @@ export const signUpWithGoogle = async ({ navigate, setLoading }: GoogleAuthProps
 	try {
 		await signInWithPopup(auth, googleProvider);
 		toast.success("Signed up successfully!");
-		setTimeout(() => navigate("/dashboard"), 1000);
+		setTimeout(() => navigate("/activate-account"), 1000);
 	} catch (error: unknown) {
 		handleError(error, navigate);
 	} finally {

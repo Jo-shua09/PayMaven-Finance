@@ -57,7 +57,7 @@ const SignUp_Login = () => {
 										value={email}
 										onChange={(e) => setEmail(e.target.value)}
 										placeholder="example@gmail.com"
-										className="bg-[#BCC1CA] normal-case mt-1 focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+										className="bg-tertiary normal-case mt-1 focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 									/>
 								</div>
 
@@ -89,7 +89,7 @@ const SignUp_Login = () => {
 											value={password}
 											onChange={(e) => setPassword(e.target.value)}
 											placeholder="enter at least 8+ characters"
-											className="bg-[#BCC1CA] mt-1 mb-5 placeholder:normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+											className="bg-tertiary mt-1 mb-5 placeholder:normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 										/>
 										{showPassword ? (
 											<RemoveRedEyeSharp
@@ -126,7 +126,7 @@ const SignUp_Login = () => {
 								<h3 className="text-3xl font-semibold mb-4"> {isSignUp ? "Sign up with" : "Sign in with"}</h3>
 								<div className="flex justify-center gap-5">
 									<div
-										className="bg-[#BCC1CA] px-10 flex items-center rounded-xl cursor-pointer hover:scale-95"
+										className="bg-tertiary px-10 flex items-center rounded-xl cursor-pointer hover:scale-95"
 										onClick={() =>
 											isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
 										}
@@ -134,7 +134,7 @@ const SignUp_Login = () => {
 										<img src={google} alt="Google" className="w-[5rem] h-[5rem] object-cover" />
 									</div>
 									<div
-										className="bg-[#BCC1CA] px-10 flex items-center rounded-xl cursor-not-allowed hover:scale-95"
+										className="bg-tertiary px-10 flex items-center rounded-xl cursor-not-allowed hover:scale-95"
 										// onClick={() =>
 										// 	isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
 										// }

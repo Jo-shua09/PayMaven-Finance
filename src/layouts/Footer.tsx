@@ -27,7 +27,9 @@ const Footer = () => {
 						<a className="link link-hover text-2xl mt-5">join us</a>
 					</nav>
 					<nav data-aos="fade-right" data-aos-delay="300">
-						<h6 className="footer-title text-4xl font-semibold font-head normal-case text-secondary">Subscribe to our newsletter</h6>
+						<h6 className="footer-title text-4xl font-semibold font-head normal-case text-secondary">
+							Subscribe to our newsletter
+						</h6>
 						<p className="text-2xl normal-case font-normal">For product announcements and exclusive insights</p>
 						<div className="w-full flex items-center relative mt-5">
 							<div className="relative w-full">
@@ -35,7 +37,7 @@ const Footer = () => {
 									type="email"
 									name="email"
 									placeholder="Input your email"
-									className="rounded-l-xl bg-[#BCC1CA] text-black normal-case focus:border-2 border-secondary text-2xl font-medium w-full h-[5rem] pl-14  sm:h-[4.5rem] "
+									className="rounded-l-xl bg-tertiary text-black normal-case focus:border-2 border-secondary text-2xl font-medium w-full h-[5rem] pl-14  sm:h-[4.5rem] "
 								/>
 								<MailOutlined className="!text-4xl absolute top-1/4 left-3" />
 							</div>
