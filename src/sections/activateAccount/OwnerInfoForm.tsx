@@ -1,25 +1,11 @@
 import { Add, Person3Outlined } from "@mui/icons-material";
 import { useState } from "react";
-import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 const OwnerInfoForm = ({ formData, onChange }) => {
-	const [checked, setChecked] = useState(true);
-	const handleChecked = () => {
-		if (!checked) {
-			<div className="w-full space-y-2">
-				<label className="text-[1.7rem] font-semibold"> address</label>
-				<input
-					type="text"
-					name="ownerAddress"
-					value={formData.ownerAddress}
-					onChange={onChange}
-					placeholder="Enter  address"
-					className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
-				/>
-			</div>;
-		}
-	};
+	const [checked, setChecked] = useState(false);
+
+	// window.addEventListener("click", handleChecked);
 
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
@@ -32,6 +18,7 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">full name</label>
 					<input
+						required
 						type="text"
 						name="ownerName"
 						value={formData.ownerName}
@@ -44,6 +31,7 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="pl-1 text-[1.7rem] font-semibold">ID number</label>
 					<input
+						required
 						type="text"
 						name="ownerID"
 						value={formData.ownerID}
@@ -56,6 +44,7 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">email</label>
 					<input
+						required
 						type="email"
 						name="ownerEmail"
 						value={formData.ownerEmail}
@@ -68,6 +57,7 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">phone number</label>
 					<input
+						required
 						type="tel"
 						name="ownerNumber"
 						value={formData.ownerNumber}
@@ -80,6 +70,7 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">nationality</label>
 					<input
+						required
 						type="text"
 						name="nation"
 						value={formData.nation}
@@ -92,6 +83,7 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">date of birth</label>
 					<input
+						required
 						type="date"
 						name="dateOfBirth"
 						value={formData.dateOfBirth}
@@ -107,6 +99,7 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 				<div className="flex items-center gap-10 ">
 					<div className="w-full relative">
 						<input
+							required
 							type="file"
 							className="w-full cursor-pointer h-[7rem] rounded-xl border border-tertiary bg-transparent"
 						/>
@@ -118,6 +111,7 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 
 					<div className="w-full relative">
 						<input
+							required
 							type="file"
 							className="w-full cursor-pointer h-[7rem] rounded-xl border border-tertiary bg-transparent"
 						/>
@@ -128,14 +122,28 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 					</div>
 				</div>
 			</div>
+
 			<div className="flex items-center gap-x-4 text-2xl font-semibold normal-case">
 				<input
+					required
 					type="checkbox"
 					name="checkedAddress"
-					onClick={() => setChecked(checked)}
+					onClick={() => setChecked(!checked)}
 					className="!bg-transparent accent-secondary cursor-pointer "
 				/>
 				Same business address
+			</div>
+			<div className={`${!checked ? "translate-y-0" : "opacity-0 hidden translate-y-full"} w-full space-y-2`}>
+				<label className="text-[1.7rem] font-semibold"> address</label>
+				<input
+					required
+					type="text"
+					name="ownerAddress"
+					value={formData.ownerAddress}
+					onChange={onChange}
+					placeholder="Enter address"
+					className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+				/>
 			</div>
 		</div>
 	);

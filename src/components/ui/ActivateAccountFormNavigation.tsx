@@ -1,10 +1,10 @@
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 type Props = {
 	step: number;
 	setStep: (val: number) => void;
-	showToast?: boolean;
 };
 
 const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep }) => {
@@ -18,14 +18,20 @@ const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep }) => {
 		};
 		if (stepMessages[nextStep as keyof typeof stepMessages]) {
 			toast.success(stepMessages[nextStep as keyof typeof stepMessages], {
-				autoClose: 1500,
+				autoClose: 2000,
 			});
 		}
 		setStep(nextStep);
 	};
 
+	const navigate = useNavigate();
+	const handleNavigate = () => {
+		toast.success("Account activated successfully !");
+		setTimeout(() => navigate("/dashboard"), 2000);
+	};
+
 	return (
-		<div className="flex items-center space-x-10 place-content-end !mt-10">
+		<div className="flex items-center w-full justify-between place-content-end !mt-16 relative">
 			{step > 1 && (
 				<button
 					onClick={() => setStep(step - 1)}
@@ -38,9 +44,18 @@ const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep }) => {
 			{step < 5 && (
 				<button
 					onClick={handleNext}
-					className="bg-secondary flex items-center gap-x-3 text-2xl capitalize font-semibold text-white px-5 py-6 hover:scale-95 rounded-md"
+					className="bg-secondary flex absolute right-0  items-center gap-x-3 text-2xl capitalize font-semibold text-white px-9 py-6 hover:scale-95 rounded-md"
 				>
 					continue
+					<ArrowForward className="!text-4xl" />
+				</button>
+			)}
+			{step == 5 && (
+				<button
+					onClick={handleNavigate}
+					className="bg-secondary flex items-center gap-x-3 text-2xl capitalize font-semibold text-white px-9 py-6 hover:scale-95 rounded-md"
+				>
+					finish
 					<ArrowForward className="!text-4xl" />
 				</button>
 			)}

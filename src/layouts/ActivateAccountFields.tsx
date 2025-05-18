@@ -18,6 +18,7 @@ const ActivateAccountFields = () => {
 	});
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault();
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
@@ -47,13 +48,9 @@ const ActivateAccountFields = () => {
 
 			<div className="mt-24 flex gap-8 w-full">
 				<ActivateAccountStepper currentStep={step} />
-
-				<div className="w-full space-y-6 flex-[6]">
-					{renderForm()}
-
-					<ActivateAccountFormNavigation step={step} setStep={setStep} />
-				</div>
+				<div className="w-full space-y-6 flex-[6]">{renderForm()}</div>
 			</div>
+			<ActivateAccountFormNavigation step={step} setStep={setStep} />
 		</div>
 	);
 };

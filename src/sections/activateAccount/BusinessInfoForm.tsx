@@ -14,6 +14,7 @@ const BusinessInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">business name</label>
 					<input
+						required
 						type="text"
 						name="businessName"
 						value={formData.businessName}
@@ -26,6 +27,7 @@ const BusinessInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">business type</label>
 					<select
+						required
 						name="businessType"
 						className="bg-tertiary cursor-pointer focus:border border-secondary capitalize pl-5 text-[1.7rem] text-black font-semibold rounded-xl w-full h-[5.5rem]"
 					>
@@ -60,11 +62,12 @@ const BusinessInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">business email</label>
 					<input
+						required
 						type="email"
 						name="businessEmail"
 						value={formData.businessEmail}
 						onChange={onChange}
-						placeholder="Enter business name"
+						placeholder="Enter business email"
 						className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 					/>
 				</div>
@@ -72,6 +75,7 @@ const BusinessInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">business address</label>
 					<input
+						required
 						type="text"
 						name="businessAddress"
 						value={formData.businessAddress}
@@ -84,6 +88,7 @@ const BusinessInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">city</label>
 					<input
+						required
 						type="text"
 						name="cityName"
 						value={formData.cityName}
@@ -96,6 +101,7 @@ const BusinessInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">state/province</label>
 					<input
+						required
 						type="text"
 						name="stateProvince"
 						value={formData.stateProvince}
@@ -108,6 +114,7 @@ const BusinessInfoForm = ({ formData, onChange }) => {
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">country/region</label>
 					<input
+						required
 						type="text"
 						name="countryRegion"
 						value={formData.countryRegion}
