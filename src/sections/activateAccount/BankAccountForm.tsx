@@ -1,5 +1,9 @@
 const BankAccountForm = () => {
-	return <div>BankAccountForm</div>;
+	return (
+		<div className="">
+			<div className=""></div>
+		</div>
+	);
 };
 
 export default BankAccountForm;
