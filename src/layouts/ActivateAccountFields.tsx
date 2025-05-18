@@ -41,14 +41,14 @@ const ActivateAccountFields = () => {
 	};
 
 	return (
-		<div className="w-[90%] m-auto section-sec">
+		<div className="w-[90%] m-auto section-sec !pb-[10rem]">
 			<h2 data-aos="fade-right" className="text-5xl font-semibold text-nowrap">
 				activate account
 			</h2>
 
-			<div className="mt-24 flex gap-8 w-full">
+			<div className="mt-24 flex gap-8 gap-y-20 w-full flex-wrap md:flex-nowrap">
 				<ActivateAccountStepper currentStep={step} />
-				<div className="w-full space-y-6 flex-[6]">{renderForm()}</div>
+				<div className="w-full space-y-6 md:flex-[6]">{renderForm()}</div>
 			</div>
 			<ActivateAccountFormNavigation step={step} setStep={setStep} />
 		</div>

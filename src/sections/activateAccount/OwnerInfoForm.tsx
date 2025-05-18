@@ -96,7 +96,7 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 
 			<div className="w-full space-y-2">
 				<label className="text-[1.7rem] font-semibold">ID Image</label>
-				<div className="flex items-center gap-10 ">
+				<div className="flex items-center gap-10 flex-wrap md:flex-nowrap">
 					<div className="w-full relative">
 						<input
 							required
@@ -133,7 +133,8 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 				/>
 				Same business address
 			</div>
-			<div className={`${!checked ? "translate-y-0" : "opacity-0 hidden translate-y-full"} w-full space-y-2`}>
+
+			<div className={`${!checked ? "translate-y-0" : "opacity-0 hidden translate-y-full"} w-full md:w-1/2 space-y-2`}>
 				<label className="text-[1.7rem] font-semibold"> address</label>
 				<input
 					required

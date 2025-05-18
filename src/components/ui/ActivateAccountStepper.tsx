@@ -14,7 +14,7 @@ const ActivateAccountStepper = ({ currentStep }: { currentStep: number }) => {
 	];
 
 	return (
-		<div className="w-full flex-[2]">
+		<div className="w-full md:flex-[2]">
 			<div data-aos="fade-up" className="flex flex-col items-start space-y-4">
 				{steps.map((item, index) => (
 					<div key={index} className="flex items-start space-x-5">
@@ -26,7 +26,7 @@ const ActivateAccountStepper = ({ currentStep }: { currentStep: number }) => {
 							>
 								{item.step}
 							</div>
-							{index < steps.length - 1 && <div className="h-20 w-px bg-gray-300 mt-1" />}
+							{index < steps.length - 1 && <div className="h-10 w-px bg-gray-300 mt-1" />}
 						</div>
 						<div>
 							<p
