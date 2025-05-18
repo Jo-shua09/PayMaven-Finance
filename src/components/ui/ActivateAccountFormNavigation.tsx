@@ -26,7 +26,7 @@ const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep }) => {
 
 	const navigate = useNavigate();
 	const handleNavigate = () => {
-		toast.success("Account activated successfully !");
+		toast.success("Account activated successfully!");
 		setTimeout(() => navigate("/dashboard"), 2000);
 	};
 
@@ -41,6 +41,7 @@ const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep }) => {
 					Back
 				</button>
 			)}
+
 			{step < 5 && (
 				<button
 					onClick={handleNext}
@@ -50,6 +51,7 @@ const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep }) => {
 					<ArrowForward className="!text-4xl" />
 				</button>
 			)}
+
 			{step == 5 && (
 				<button
 					onClick={handleNavigate}
