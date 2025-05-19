@@ -2,7 +2,7 @@ import { useState } from "react";
 import BusinessInfoForm from "../sections/activateAccount/BusinessInfoForm";
 import ActivateAccountStepper from "../components/ui/ActivateAccountStepper";
 import PersonalInfoForm from "../sections/activateAccount/PersonalInfoForm";
-// import BankAccountForm from "../sections/activateAccount/BankAccountForm";
+import BankAccountForm from "../sections/activateAccount/BankAccountForm";
 // import SecureAccountForm from "../sections/activateAccount/SecureAccountForm";
 // import ReviewInfo from "../sections/activateAccount/ReviewInfo";
 import ActivateAccountFormNavigation from "../components/ui/ActivateAccountFormNavigation";
@@ -31,8 +31,12 @@ const ActivateAccountFields = () => {
 
 		// Bank Account Info
 		bankName: "",
-		bankAccountNumber: "",
-		bankRoutingNumber: "",
+		bankBranch: "",
+		accountNumber: 0,
+		holderName: "",
+		cardNumber: 0,
+		expirationDate: 0,
+		cvv: 0,
 
 		// Secure Account Info
 		password: "",
@@ -82,17 +86,21 @@ const ActivateAccountFields = () => {
 						onChange={handleChange}
 					/>
 				);
-			// case 3:
-			// 	return (
-			// 		<BankAccountForm
-			// 			formData={{
-			// 				bankName: formData.bankName,
-			// 				bankAccountNumber: formData.bankAccountNumber,
-			// 				bankRoutingNumber: formData.bankRoutingNumber,
-			// 			}}
-			// 			onChange={handleChange}
-			// 		/>
-			// 	);
+			case 3:
+				return (
+					<BankAccountForm
+						formData={{
+							bankName: formData.bankName,
+							bankBranch: formData.bankBranch,
+							accountNumber: formData.accountNumber,
+							holderName: formData.holderName,
+							cardNumber: formData.cardNumber,
+							expirationDate: formData.expirationDate,
+							cvv: formData.cvv,
+						}}
+						onChange={handleChange}
+					/>
+				);
 			// case 4:
 			// 	return (
 			// 		<SecureAccountForm
