@@ -2,7 +2,20 @@ import { Add, Person3Outlined } from "@mui/icons-material";
 import { useState } from "react";
 import "react-phone-input-2/lib/style.css";
 
-const OwnerInfoForm = ({ formData, onChange }) => {
+interface OwnerInfoFormProps {
+	formData: {
+		ownerName: string;
+		ownerID: string;
+		ownerEmail: string;
+		ownerNumber: string;
+		nation: string;
+		dateOfBirth: string;
+		ownerAddress: string;
+	};
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const OwnerInfoForm: React.FC<OwnerInfoFormProps> = ({ formData, onChange }) => {
 	const [checked, setChecked] = useState(false);
 
 	return (
@@ -96,27 +109,21 @@ const OwnerInfoForm = ({ formData, onChange }) => {
 				<label className="text-[1.7rem] font-semibold">ID Image</label>
 				<div className="flex items-center gap-10 flex-wrap md:flex-nowrap">
 					<div className="w-full relative">
-						<input
-							required
-							type="file"
-							className="w-full cursor-pointer h-[7rem] rounded-xl border border-tertiary bg-transparent"
-						/>
-						<span className="absolute top-1/3 text-2xl left-4 flex items-center gap-x-3">
-							<Add className="!text-5xl" />
-							front
-						</span>
+						<div className="w-full cursor-pointer h-[7rem] rounded-xl border border-tertiary bg-transparent">
+							<span className="absolute top-1/3 text-2xl left-4 flex items-center gap-x-3">
+								<Add className="!text-5xl" />
+								front
+							</span>
+						</div>
 					</div>
 
 					<div className="w-full relative">
-						<input
-							required
-							type="file"
-							className="w-full cursor-pointer h-[7rem] rounded-xl border border-tertiary bg-transparent"
-						/>
-						<span className="absolute top-1/3 text-2xl left-4 flex items-center gap-x-3">
-							<Add className="!text-5xl" />
-							back
-						</span>
+						<div className="w-full cursor-pointer h-[7rem] rounded-xl border border-tertiary bg-transparent">
+							<span className="absolute top-1/3 text-2xl left-4 flex items-center gap-x-3">
+								<Add className="!text-5xl" />
+								back
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>

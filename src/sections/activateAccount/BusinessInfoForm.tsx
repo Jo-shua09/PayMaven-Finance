@@ -2,7 +2,21 @@ import { Business } from "@mui/icons-material";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
-const BusinessInfoForm = ({ formData, onChange }) => {
+interface BusinessInfoFormProps {
+	formData: {
+		businessName: string;
+		businessType: string;
+		number: string;
+		businessEmail: string;
+		businessAddress: string;
+		cityName: string;
+		stateProvince: string;
+		countryRegion: string;
+	};
+	onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string) => void;
+}
+
+const BusinessInfoForm: React.FC<BusinessInfoFormProps> = ({ formData, onChange }) => {
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
 			<div className="w-full flex items-center gap-x-5">
@@ -29,18 +43,20 @@ const BusinessInfoForm = ({ formData, onChange }) => {
 					<select
 						required
 						name="businessType"
+						value={formData.businessType || "select business type"}
+						onChange={onChange}
 						className="bg-tertiary cursor-pointer focus:border border-secondary capitalize pl-5 text-[1.7rem] text-black font-semibold rounded-xl w-full h-[5.5rem]"
 					>
-						<option disabled defaultValue={"true"} value="select type">
-							select type
+						<option disabled value="select business type">
+							select business type
 						</option>
-						<option onChange={onChange} value={formData.businessType} className="text-gray-700 font-medium">
+						<option value="individual" className="text-gray-700 font-medium">
 							individual
 						</option>
-						<option onChange={onChange} value={formData.businessType} className="text-gray-700 font-medium">
+						<option value="partnership" className="text-gray-700 font-medium">
 							partnership
 						</option>
-						<option onChange={onChange} value={formData.businessType} className="text-gray-700 font-medium">
+						<option value="limited liability company" className="text-gray-700 font-medium">
 							limited liability company
 						</option>
 					</select>
