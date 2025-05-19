@@ -32,6 +32,11 @@ html {
 	font-size: 62.5%;
 }
 
+.no-calendar::-webkit-calendar-picker-indicator {
+	display: none;
+	-webkit-appearance: none;
+}
+
 .section {
 	padding: 1rem 5%;
 }

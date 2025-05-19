@@ -100,7 +100,7 @@ const OwnerInfoForm: React.FC<OwnerInfoFormProps> = ({ formData, onChange }) => 
 						value={formData.dateOfBirth}
 						onChange={onChange}
 						placeholder="Enter date of birth"
-						className="bg-tertiary normal-case appearance-none focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+						className="bg-tertiary normal-case no-calendar focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 					/>
 				</div>
 			</form>
