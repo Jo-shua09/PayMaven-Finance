@@ -16,7 +16,7 @@ function App() {
 	return (
 		<>
 			<AppRouter />
-			<ToastContainer position="top-right" autoClose={2000} toastClassName="text-2xl font-medium" />
+			<ToastContainer position="top-right" autoClose={2000} toastClassName="text-2xl normal-case font-medium" />
 		</>
 	);
 }

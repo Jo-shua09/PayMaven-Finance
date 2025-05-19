@@ -45,7 +45,7 @@ const BusinessInfoForm: React.FC<BusinessInfoFormProps> = ({ formData, onChange 
 						name="businessType"
 						value={formData.businessType || "select business type"}
 						onChange={onChange}
-						className="bg-tertiary cursor-pointer focus:border border-secondary capitalize pl-5 text-[1.7rem] text-black font-semibold rounded-xl w-full h-[5.5rem]"
+						className="bg-tertiary cursor-pointer appearance-none focus:border border-secondary capitalize pl-5 text-[1.7rem] text-black font-semibold rounded-xl w-full h-[5.5rem]"
 					>
 						<option disabled value="select business type">
 							select business type
