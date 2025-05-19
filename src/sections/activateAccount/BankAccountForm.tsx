@@ -6,11 +6,11 @@ interface BankAccountFormProps {
 	formData: {
 		bankName: string;
 		bankBranch: string;
-		accountNumber: number;
+		accountNumber: number | string;
 		holderName: string;
-		cardNumber: number;
-		expirationDate: number;
-		cvv: number;
+		cardNumber: number | string;
+		expirationDate: number | string;
+		cvv: number | string;
 	};
 	onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string) => void;
 }

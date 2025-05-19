@@ -32,11 +32,11 @@ const ActivateAccountFields = () => {
 		// Bank Account Info
 		bankName: "",
 		bankBranch: "",
-		accountNumber: 0,
+		accountNumber: "",
 		holderName: "",
-		cardNumber: 0,
-		expirationDate: 0,
-		cvv: 0,
+		cardNumber: "",
+		expirationDate: "",
+		cvv: "",
 
 		// Secure Account Info
 		password: "",
