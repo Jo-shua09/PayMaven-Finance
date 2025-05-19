@@ -1,6 +1,6 @@
 import { Add, Person3Outlined } from "@mui/icons-material";
-import { useState } from "react";
 import "react-phone-input-2/lib/style.css";
+import React, { useRef, useState } from "react";
 
 interface personalInfoFormProps {
 	formData: {
@@ -16,7 +16,24 @@ interface personalInfoFormProps {
 }
 
 const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange }) => {
+	const frontInputRef = useRef<HTMLInputElement | null>(null);
+	const backInputRef = useRef<HTMLInputElement | null>(null);
+
+	const [frontImage, setFrontImage] = useState<string | null>(null);
+	const [backImage, setBackImage] = useState<string | null>(null);
+
 	const [checked, setChecked] = useState(false);
+
+	const handleImageChange = (
+		e: React.ChangeEvent<HTMLInputElement>,
+		setImage: React.Dispatch<React.SetStateAction<string | null>>
+	) => {
+		const file = e.target.files && e.target.files[0];
+		if (file) {
+			const imageUrl = URL.createObjectURL(file);
+			setImage(imageUrl);
+		}
+	};
 
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
@@ -108,21 +125,51 @@ const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange 
 			<div className="w-full space-y-2">
 				<label className="text-[1.7rem] font-semibold">ID Image</label>
 				<div className="flex items-center gap-10 flex-wrap md:flex-nowrap">
+					{/* Front */}
 					<div className="w-full relative">
-						<div className="w-full cursor-pointer h-[7rem] rounded-xl border border-tertiary bg-transparent">
-							<span className="absolute top-1/3 text-2xl left-4 flex items-center gap-x-3">
-								<Add className="!text-5xl" />
-								front
-							</span>
+						<input
+							type="file"
+							accept="image/*"
+							className="hidden"
+							ref={frontInputRef}
+							onChange={(e) => handleImageChange(e, setFrontImage)}
+						/>
+						<div
+							onClick={() => frontInputRef.current && frontInputRef.current.click()}
+							className="w-full cursor-pointer h-[25rem] rounded-xl border border-tertiary bg-transparent flex justify-center items-center relative overflow-hidden"
+						>
+							{frontImage ? (
+								<img src={frontImage} alt="Front" className="w-full h-full object-cover rounded-xl" />
+							) : (
+								<span className="text-2xl flex items-center gap-x-3">
+									<Add className="!text-5xl" />
+									front
+								</span>
+							)}
 						</div>
 					</div>
 
+					{/* Back */}
 					<div className="w-full relative">
-						<div className="w-full cursor-pointer h-[7rem] rounded-xl border border-tertiary bg-transparent">
-							<span className="absolute top-1/3 text-2xl left-4 flex items-center gap-x-3">
-								<Add className="!text-5xl" />
-								back
-							</span>
+						<input
+							type="file"
+							accept="image/*"
+							className="hidden"
+							ref={backInputRef}
+							onChange={(e) => handleImageChange(e, setBackImage)}
+						/>
+						<div
+							onClick={() => backInputRef.current && backInputRef.current.click()}
+							className="w-full cursor-pointer h-[25rem] rounded-xl border border-tertiary bg-transparent flex justify-center items-center relative overflow-hidden"
+						>
+							{backImage ? (
+								<img src={backImage} alt="Back" className="w-full h-full object-cover rounded-xl" />
+							) : (
+								<span className="text-2xl flex items-center gap-x-3">
+									<Add className="!text-5xl" />
+									back
+								</span>
+							)}
 						</div>
 					</div>
 				</div>
