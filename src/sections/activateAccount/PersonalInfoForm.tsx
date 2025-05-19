@@ -2,27 +2,27 @@ import { Add, Person3Outlined } from "@mui/icons-material";
 import { useState } from "react";
 import "react-phone-input-2/lib/style.css";
 
-interface OwnerInfoFormProps {
+interface personalInfoFormProps {
 	formData: {
-		ownerName: string;
-		ownerID: string;
-		ownerEmail: string;
-		ownerNumber: string;
+		personalName: string;
+		personalID: string;
+		personalEmail: string;
+		personalNumber: string;
 		nation: string;
 		dateOfBirth: string;
-		ownerAddress: string;
+		personalAddress: string;
 	};
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const OwnerInfoForm: React.FC<OwnerInfoFormProps> = ({ formData, onChange }) => {
+const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange }) => {
 	const [checked, setChecked] = useState(false);
 
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
 			<div className="w-full flex items-center gap-x-5">
 				<Person3Outlined className="!text-6xl p-3 rounded-xl bg-secondary text-white" />
-				<span className="text-3xl font-semibold">owner information</span>
+				<span className="text-3xl font-semibold">personal information</span>
 			</div>
 
 			<form className="w-full sm:grid-cols-2 grid-cols-1 gap-10 grid">
@@ -31,8 +31,8 @@ const OwnerInfoForm: React.FC<OwnerInfoFormProps> = ({ formData, onChange }) => 
 					<input
 						required
 						type="text"
-						name="ownerName"
-						value={formData.ownerName}
+						name="personalName"
+						value={formData.personalName}
 						onChange={onChange}
 						placeholder="Enter full name"
 						className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
@@ -44,8 +44,8 @@ const OwnerInfoForm: React.FC<OwnerInfoFormProps> = ({ formData, onChange }) => 
 					<input
 						required
 						type="text"
-						name="ownerID"
-						value={formData.ownerID}
+						name="personalID"
+						value={formData.personalID}
 						onChange={onChange}
 						placeholder="Enter ID number"
 						className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
@@ -57,8 +57,8 @@ const OwnerInfoForm: React.FC<OwnerInfoFormProps> = ({ formData, onChange }) => 
 					<input
 						required
 						type="email"
-						name="ownerEmail"
-						value={formData.ownerEmail}
+						name="personalEmail"
+						value={formData.personalEmail}
 						onChange={onChange}
 						placeholder="Enter email address"
 						className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
@@ -70,8 +70,8 @@ const OwnerInfoForm: React.FC<OwnerInfoFormProps> = ({ formData, onChange }) => 
 					<input
 						required
 						type="tel"
-						name="ownerNumber"
-						value={formData.ownerNumber}
+						name="personalNumber"
+						value={formData.personalNumber}
 						onChange={onChange}
 						placeholder="Enter phone number"
 						className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
@@ -144,8 +144,8 @@ const OwnerInfoForm: React.FC<OwnerInfoFormProps> = ({ formData, onChange }) => 
 				<input
 					required
 					type="text"
-					name="ownerAddress"
-					value={formData.ownerAddress}
+					name="personalAddress"
+					value={formData.personalAddress}
 					onChange={onChange}
 					placeholder="Enter address"
 					className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
@@ -155,4 +155,4 @@ const OwnerInfoForm: React.FC<OwnerInfoFormProps> = ({ formData, onChange }) => 
 	);
 };
 
-export default OwnerInfoForm;
+export default PersonalInfoForm;

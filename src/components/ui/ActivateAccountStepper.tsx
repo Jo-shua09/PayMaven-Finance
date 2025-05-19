@@ -7,7 +7,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 const ActivateAccountStepper = ({ currentStep }: { currentStep: number }) => {
 	const steps = [
 		{ label: "Business Information", icon: <BusinessIcon />, step: 1 },
-		{ label: "Owner Information", icon: <PersonIcon />, step: 2 },
+		{ label: "personal Information", icon: <PersonIcon />, step: 2 },
 		{ label: "Add bank account", icon: <AccountBalanceIcon />, step: 3 },
 		{ label: "Secure account", icon: <SecurityIcon />, step: 4 },
 		{ label: "Review", icon: <CheckCircleIcon />, step: 5 },

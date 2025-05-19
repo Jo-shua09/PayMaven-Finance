@@ -11,8 +11,8 @@ const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep }) => {
 	const handleNext = () => {
 		const nextStep = step + 1;
 		const stepMessages = {
-			2: "Business info saved, moving to Owner Info.",
-			3: "Owner info saved, let's add bank details.",
+			2: "Business info saved, moving to personal Info.",
+			3: "personal info saved, let's add bank details.",
 			4: "Bank info saved, now secure your account.",
 			5: "Account secured, time to review everything.",
 		};

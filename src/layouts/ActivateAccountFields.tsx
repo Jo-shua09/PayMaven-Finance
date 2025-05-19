@@ -1,7 +1,7 @@
 import { useState } from "react";
 import BusinessInfoForm from "../sections/activateAccount/BusinessInfoForm";
 import ActivateAccountStepper from "../components/ui/ActivateAccountStepper";
-import OwnerInfoForm from "../sections/activateAccount/OwnerInfoForm";
+import PersonalInfoForm from "../sections/activateAccount/PersonalInfoForm";
 // import BankAccountForm from "../sections/activateAccount/BankAccountForm";
 // import SecureAccountForm from "../sections/activateAccount/SecureAccountForm";
 // import ReviewInfo from "../sections/activateAccount/ReviewInfo";
@@ -19,18 +19,21 @@ const ActivateAccountFields = () => {
 		cityName: "",
 		stateProvince: "",
 		countryRegion: "",
-		// Owner Info
-		ownerName: "",
-		ownerID: "",
-		ownerEmail: "",
-		ownerNumber: "",
+
+		// personal Info
+		personalName: "",
+		personalID: "",
+		personalEmail: "",
+		personalNumber: "",
 		nation: "",
 		dateOfBirth: "",
-		ownerAddress: "",
+		personalAddress: "",
+
 		// Bank Account Info
 		bankName: "",
 		bankAccountNumber: "",
 		bankRoutingNumber: "",
+
 		// Secure Account Info
 		password: "",
 		confirmPassword: "",
@@ -66,15 +69,15 @@ const ActivateAccountFields = () => {
 				);
 			case 2:
 				return (
-					<OwnerInfoForm
+					<PersonalInfoForm
 						formData={{
-							ownerName: formData.ownerName,
-							ownerID: formData.ownerID,
-							ownerEmail: formData.ownerEmail,
-							ownerNumber: formData.ownerNumber,
+							personalName: formData.personalName,
+							personalID: formData.personalID,
+							personalEmail: formData.personalEmail,
+							personalNumber: formData.personalNumber,
 							nation: formData.nation,
 							dateOfBirth: formData.dateOfBirth,
-							ownerAddress: formData.ownerAddress,
+							personalAddress: formData.personalAddress,
 						}}
 						onChange={handleChange}
 					/>
