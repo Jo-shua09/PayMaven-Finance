@@ -5,8 +5,6 @@ import "react-phone-input-2/lib/style.css";
 const OwnerInfoForm = ({ formData, onChange }) => {
 	const [checked, setChecked] = useState(false);
 
-	// window.addEventListener("click", handleChecked);
-
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
 			<div className="w-full flex items-center gap-x-5">
