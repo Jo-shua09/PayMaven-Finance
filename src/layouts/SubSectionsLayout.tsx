@@ -21,6 +21,7 @@ const SubSectionsLayout = ({ image, title, description, buttonTitle, CTitle }: S
 				>
 					<div className={`${CTitle == "manage" ? "hidden" : "flex"}  md:flex-[3] w-full md:place-content-end`}>
 						<img
+							loading="lazy"
 							src={image}
 							loading="lazy"
 							alt="Monitor payment image"
@@ -31,7 +32,13 @@ const SubSectionsLayout = ({ image, title, description, buttonTitle, CTitle }: S
 
 					<div className="w-full md:flex-[2] md:text-left text-center  flex-col flex gap-y-8">
 						<div data-aos="fade-down" data-aos-delay="100" className="md:m-0 m-auto">
-							<BlurText text="YOU CAN" delay={150} animateBy="words" direction="top" className="text-3xl font-semibold" />
+							<BlurText
+								text="YOU CAN"
+								delay={150}
+								animateBy="words"
+								direction="top"
+								className="text-3xl font-semibold"
+							/>
 						</div>
 						<h1 data-aos="fade-down" data-aos-delay="150" className="text-7xl font-head font-bold">
 							<span className={`${CTitle == "manage" ? "text-secondary" : "text-pink-500"}`}>{CTitle} </span> {title}
@@ -52,6 +59,7 @@ const SubSectionsLayout = ({ image, title, description, buttonTitle, CTitle }: S
 
 					<div className={`${CTitle == "manage" ? "flex" : "hidden"}  md:flex-[3] w-full`}>
 						<img
+							loading="lazy"
 							src={image}
 							loading="lazy"
 							alt="Monitor payment image"

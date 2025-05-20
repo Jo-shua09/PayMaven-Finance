@@ -103,6 +103,7 @@ const ReviewInfo: React.FC<ReviewInfoProps> = ({ formData }) => {
 							<div className="w-full md:w-1/3">
 								<p className="font-medium mb-2 text-xl">Front Side</p>
 								<img
+									loading="lazy"
 									src={frontImage}
 									alt="ID Front"
 									className="rounded-lg border border-gray-200 w-full h-auto max-h-64 object-contain"
@@ -113,6 +114,7 @@ const ReviewInfo: React.FC<ReviewInfoProps> = ({ formData }) => {
 							<div className="w-full md:w-1/3">
 								<p className="font-medium mb-2 text-xl">Back Side</p>
 								<img
+									loading="lazy"
 									src={backImage}
 									alt="ID Back"
 									className="rounded-lg border border-gray-200 w-full h-auto max-h-64 object-contain"

@@ -27,7 +27,7 @@ const ActivateAccountSuccess = () => {
 			<div className="w-full section h-full max-h-full">
 				<div className="w-full m-auto h-full flex flex-col justify-center items-center">
 					<div className="w-[30rem] h-[30rem]">
-						<img src={auth} alt="" className=" w-full h-full object-cover" />
+						<img loading="lazy" src={auth} alt="" className=" w-full h-full object-cover" />
 					</div>
 					<div className="lg:w-[30%] sm:w-[45%] w-[75%] mt-10 text-ceneter items-center flex-col flex space-y-6">
 						<h2 className="text-5xl font-semibold font-head normal-case">Account activated</h2>

@@ -102,8 +102,8 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({ formData, onChange })
 						className="ml-2 accent-secondary cursor-pointer"
 					/>
 					<div className="flex gap-x-4 items-center">
-						<img src={visaCard} alt="Visa" className="h-10 w-auto object-contain" />
-						<img src={masterCard} alt="MasterCard" className="h-10 w-auto object-contain" />
+						<img loading="lazy" src={visaCard} alt="Visa" className="h-10 w-auto object-contain" />
+						<img loading="lazy" src={masterCard} alt="MasterCard" className="h-10 w-auto object-contain" />
 					</div>
 				</div>
 

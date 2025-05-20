@@ -160,7 +160,12 @@ const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange 
 							className="w-full cursor-pointer h-[25rem] rounded-xl border border-tertiary bg-transparent flex justify-center items-center relative overflow-hidden"
 						>
 							{frontImage ? (
-								<img src={frontImage} alt="Front" className="p-4 shadow-2xl w-full h-full object-cover rounded-xl" />
+								<img
+									loading="lazy"
+									src={frontImage}
+									alt="Front"
+									className="p-4 shadow-2xl w-full h-full object-cover rounded-xl"
+								/>
 							) : (
 								<span className="text-2xl flex items-center gap-x-3">
 									<Add className="!text-5xl" />
@@ -184,7 +189,12 @@ const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange 
 							className="w-full cursor-pointer h-[25rem] rounded-xl border border-tertiary bg-transparent flex justify-center items-center relative overflow-hidden"
 						>
 							{backImage ? (
-								<img src={backImage} alt="Back" className="p-4 shadow-2xl w-full h-full object-cover rounded-xl" />
+								<img
+									loading="lazy"
+									src={backImage}
+									alt="Back"
+									className="p-4 shadow-2xl w-full h-full object-cover rounded-xl"
+								/>
 							) : (
 								<span className="text-2xl flex items-center gap-x-3">
 									<Add className="!text-5xl" />

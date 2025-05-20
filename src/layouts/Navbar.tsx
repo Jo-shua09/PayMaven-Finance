@@ -51,7 +51,7 @@ const Navbar = () => {
 						</button>
 
 						<div className="w-full gap-x-3 flex items-center">
-							<img src="logo.svg" loading="lazy" alt="logo image" className="w-16 h-16" />
+							<img loading="lazy" src="logo.svg" loading="lazy" alt="logo image" className="w-16 h-16" />
 							<span className="text-4xl font-semibold text-gray-900">PayMaven</span>
 						</div>
 
@@ -85,7 +85,7 @@ const Navbar = () => {
 				<div className="flex items-center section justify-between py-5 gap-10 shadow-md">
 					{/* Logo */}
 					<div className="flex items-center gap-x-3">
-						<img src="logo.svg" alt="logo" className="w-16 h-16" />
+						<img loading="lazy" src="logo.svg" alt="logo" className="w-16 h-16" />
 						<span className="text-4xl font-semibold text-gray-900">PayMaven</span>
 					</div>
 

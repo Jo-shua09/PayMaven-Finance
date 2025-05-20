@@ -23,6 +23,7 @@ const Hero = () => {
 
 				<div className="flex md:flex-[3] w-full relative">
 					<img
+						loading="lazy"
 						src={hero}
 						loading="lazy"
 						alt="hero big image"
@@ -30,6 +31,7 @@ const Hero = () => {
 						className="lg:w-full w-[80%] m-auto h-full rounded-3xl brightness-95"
 					/>
 					<img
+						loading="lazy"
 						src={heroSmall}
 						loading="lazy"
 						data-aos="fade-left"

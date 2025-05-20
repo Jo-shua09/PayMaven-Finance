@@ -39,7 +39,7 @@ const SignUp_Login = () => {
 					<div data-aos="fade-right" className="w-full h-full">
 						<div className="flex flex-col items-center justify-center">
 							<div className="flex items-center gap-x-3 mb-10">
-								<img src="/logo.svg" alt="logo" className="w-16 h-16" />
+								<img loading="lazy" src="/logo.svg" alt="logo" className="w-16 h-16" />
 								<span className="text-4xl font-semibold text-gray-900">PayMaven</span>
 							</div>
 
@@ -131,7 +131,7 @@ const SignUp_Login = () => {
 											isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
 										}
 									>
-										<img src={google} alt="Google" className="w-[5rem] h-[5rem] object-cover" />
+										<img loading="lazy" src={google} alt="Google" className="w-[5rem] h-[5rem] object-cover" />
 									</div>
 									<div
 										className="bg-tertiary px-10 flex items-center rounded-xl cursor-not-allowed hover:scale-95"
@@ -139,7 +139,7 @@ const SignUp_Login = () => {
 										// 	isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
 										// }
 									>
-										<img src={apple} alt="Google" className="w-[7rem] h-[6rem] object-cover" />
+										<img loading="lazy" src={apple} alt="Google" className="w-[7rem] h-[6rem] object-cover" />
 									</div>
 								</div>
 							</div>
@@ -169,11 +169,11 @@ const SignUp_Login = () => {
 
 				<div className="md:flex hidden w-[55rem] h-full">
 					<img
+						loading="lazy"
 						data-aos="fade-left"
 						src={signImage}
 						alt="Get started"
 						className="w-full h-full object-cover"
-						loading="lazy"
 					/>
 				</div>
 			</div>

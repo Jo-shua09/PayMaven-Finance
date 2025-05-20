@@ -6,7 +6,7 @@ const Footer = () => {
 			<div data-aos="flip-up" className="section-sec bg-primary w-full">
 				<footer className="footer sm:footer-horizontal text-gray-900 text-2xl font-normal">
 					<div data-aos="fade-right" data-aos-delay="100" className="flex gap-x-3 items-center">
-						<img src="logo.svg" loading="lazy" alt="logo image" className="w-16 h-16" />
+						<img loading="lazy" src="logo.svg" loading="lazy" alt="logo image" className="w-16 h-16" />
 						<span className="text-4xl font-semibold text-gray-900">PayMaven</span>
 					</div>
 					<nav data-aos="fade-right" data-aos-delay="150">
