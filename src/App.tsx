@@ -7,16 +7,21 @@ import { ToastContainer } from "react-toastify";
 function App() {
 	useEffect(() => {
 		AOS.init({
-			duration: 1000, // Animation duration (ms)
-			once: true, // Whether animation should happen only once
-			offset: 100, // Offset (in px) from the original trigger point
+			duration: 1000,
+			once: true,
+			offset: 100,
 		});
 	}, []);
 
 	return (
 		<>
 			<AppRouter />
-			<ToastContainer position="top-right" autoClose={2000} toastClassName="text-2xl normal-case font-medium" />
+			<ToastContainer
+				position="top-right"
+				pauseOnHover={false}
+				autoClose={2000}
+				toastClassName="text-2xl normal-case font-medium"
+			/>
 		</>
 	);
 }
