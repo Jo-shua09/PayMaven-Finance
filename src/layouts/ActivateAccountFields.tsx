@@ -3,7 +3,7 @@ import BusinessInfoForm from "../sections/activateAccount/BusinessInfoForm";
 import ActivateAccountStepper from "../components/ui/ActivateAccountStepper";
 import PersonalInfoForm from "../sections/activateAccount/PersonalInfoForm";
 import BankAccountForm from "../sections/activateAccount/BankAccountForm";
-// import SecureAccountForm from "../sections/activateAccount/SecureAccountForm";
+import SecureAccountForm from "../sections/activateAccount/SecureAccountForm";
 // import ReviewInfo from "../sections/activateAccount/ReviewInfo";
 import ActivateAccountFormNavigation from "../components/ui/ActivateAccountFormNavigation";
 
@@ -101,16 +101,16 @@ const ActivateAccountFields = () => {
 						onChange={handleChange}
 					/>
 				);
-			// case 4:
-			// 	return (
-			// 		<SecureAccountForm
-			// 			formData={{
-			// 				password: formData.password,
-			// 				confirmPassword: formData.confirmPassword,
-			// 			}}
-			// 			onChange={handleChange}
-			// 		/>
-			// 	);
+			case 4:
+				return (
+					<SecureAccountForm
+						formData={{
+							password: formData.password,
+							confirmPassword: formData.confirmPassword,
+						}}
+						onChange={handleChange}
+					/>
+				);
 			// case 5:
 			// 	return <ReviewInfo formData={formData} />;
 			default:

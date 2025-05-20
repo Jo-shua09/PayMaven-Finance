@@ -17,7 +17,7 @@ interface BankAccountFormProps {
 }
 
 const BankAccountForm: React.FC<BankAccountFormProps> = ({ formData, onChange }) => {
-	const [cardType, setCardType] = useState("");
+	const [cardType, setCardType] = useState<"visa" | "wallet" | null>(null);
 
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
@@ -86,9 +86,12 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({ formData, onChange })
 			</div>
 
 			<div className="w-full flex items-center gap-10 flex-wrap md:flex-nowrap">
+				{/* VISA/MASTERCARD Option */}
 				<div
 					onClick={() => setCardType("visa")}
-					className="flex items-center gap-x-5 w-full border bg-primary rounded-xl p-5 cursor-pointer"
+					className={`flex items-center gap-x-5 w-full border rounded-xl p-8 cursor-pointer ${
+						cardType === "visa" ? "bg-secondary/20 border-secondary" : "bg-primary"
+					}`}
 				>
 					<input
 						type="radio"
@@ -98,13 +101,18 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({ formData, onChange })
 						onChange={() => setCardType("visa")}
 						className="ml-2 accent-secondary cursor-pointer"
 					/>
-					<img src={visaCard} alt="Visa" className="w-fit h-fit object-cover" />
-					<img src={masterCard} alt="MasterCard" className="w-fit h-fit object-cover" />
+					<div className="flex gap-x-4 items-center">
+						<img src={visaCard} alt="Visa" className="h-10 w-auto object-contain" />
+						<img src={masterCard} alt="MasterCard" className="h-10 w-auto object-contain" />
+					</div>
 				</div>
 
+				{/* Wallet Option */}
 				<div
 					onClick={() => setCardType("wallet")}
-					className="flex items-center gap-x-5 w-full border pl-2 bg-primary rounded-xl p-5 cursor-pointer"
+					className={`flex items-center gap-x-5 w-full border rounded-xl p-5 cursor-pointer ${
+						cardType === "wallet" ? "bg-secondary/20 border-secondary" : "bg-primary"
+					}`}
 				>
 					<input
 						type="radio"
@@ -115,13 +123,15 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({ formData, onChange })
 						className="ml-2 accent-secondary cursor-pointer"
 					/>
 					<AccountBalanceWalletTwoTone className="!text-6xl text-secondary" />
+					<span className="text-3xl font-semibold font-head">Pay with Wallet</span>
 				</div>
 			</div>
 
+			{/* VISA/MasterCard Form */}
 			{cardType === "visa" && (
 				<form className="w-full sm:grid-cols-2 grid-cols-1 gap-10 grid mt-5">
 					<div className="w-full space-y-2">
-						<label className="text-[1.7rem] font-semibold">name on card</label>
+						<label className="text-[1.7rem] font-semibold">Name on card</label>
 						<input
 							required
 							type="text"
@@ -129,11 +139,11 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({ formData, onChange })
 							value={formData.holderName}
 							onChange={onChange}
 							placeholder="Enter name on card"
-							className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+							className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 						/>
 					</div>
 					<div className="w-full space-y-2">
-						<label className="text-[1.7rem] font-semibold">card number</label>
+						<label className="text-[1.7rem] font-semibold">Card number</label>
 						<input
 							required
 							type="text"
@@ -141,23 +151,21 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({ formData, onChange })
 							value={formData.cardNumber}
 							onChange={onChange}
 							placeholder="Enter card number"
-							className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+							className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 						/>
 					</div>
-
 					<div className="w-full space-y-2">
-						<label className="text-[1.7rem] font-semibold">expiration date</label>
+						<label className="text-[1.7rem] font-semibold">Expiration date</label>
 						<input
 							required
 							type="text"
 							name="expirationDate"
 							value={formData.expirationDate}
 							onChange={onChange}
-							placeholder="Enter expiration date"
-							className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+							placeholder="MM/YY"
+							className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 						/>
 					</div>
-
 					<div className="w-full space-y-2">
 						<label className="text-[1.7rem] font-semibold">CVV</label>
 						<input
@@ -167,7 +175,7 @@ const BankAccountForm: React.FC<BankAccountFormProps> = ({ formData, onChange })
 							value={formData.cvv}
 							onChange={onChange}
 							placeholder="Enter CVV"
-							className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+							className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 						/>
 					</div>
 				</form>
