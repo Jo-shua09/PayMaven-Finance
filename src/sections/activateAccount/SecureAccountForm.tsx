@@ -25,7 +25,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 				<span className="text-3xl font-semibold">Secure account</span>
 			</div>
 
-			<div className="w-full space-y-10">
+			<div className="w-full space-y-10 !mb-20">
 				<div className="w-full flex items-center gap-10 flex-wrap md:flex-nowrap">
 					<div
 						onClick={() => setActiveOption("password")}
@@ -56,7 +56,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 							onChange={() => setActiveOption("recoveryEmail")}
 							className="ml-2 accent-secondary cursor-pointer"
 						/>
-						<span className="text-3xl font-semibold font-head">Set recovery email</span>
+						<span className="text-3xl font-semibold font-head">Enable Two-Factor Authentication (2FA)</span>
 					</div>
 				</div>
 
@@ -89,6 +89,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 					</form>
 				)}
 
+				{/* Two Factor Auth */}
 				{activeOption === "recoveryEmail" && (
 					<form className="w-full grid sm:grid-cols-2 grid-cols-1 gap-10">
 						<div className="w-full space-y-2">
@@ -104,7 +105,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 							/>
 						</div>
 						<div className="w-full space-y-2">
-							<label className="text-[1.7rem] font-semibold">Confirm email</label>
+							<label className="text-[1.7rem] font-semibold">Confirm recovery email</label>
 							<input
 								required
 								type="email"
@@ -144,36 +145,6 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 					/>
 				</div>
 			</form>
-
-			{/* Two Factor Auth */}
-			<div className="flex items-center gap-4">
-				<input
-					type="checkbox"
-					name="twoFactorEnabled"
-					checked={formData.twoFactorEnabled}
-					onChange={(e) =>
-						onChange({
-							target: { name: "twoFactorEnabled", value: e.target.checked },
-						} as any)
-					}
-				/>
-				<label className="text-xl">Enable Two-Factor Authentication (2FA)</label>
-			</div>
-
-			{/* Recovery Email */}
-			{formData.twoFactorEnabled && (
-				<div>
-					<label className="block text-xl mb-2">Recovery Email</label>
-					<input
-						type="email"
-						name="recoveryEmail"
-						value={formData.recoveryEmail}
-						onChange={onChange}
-						className="w-full p-4 border rounded"
-						placeholder="Enter recovery email"
-					/>
-				</div>
-			)}
 		</div>
 	);
 };

@@ -41,6 +41,12 @@ const ActivateAccountFields = () => {
 		// Secure Account Info
 		password: "",
 		confirmPassword: "",
+		securityQuestion: "",
+		securityAnswer: "",
+		twoFactorEnabled: false,
+		recoveryEmail: "",
+		email: "",
+		confirmEmail: "",
 	});
 
 	const handleChange = (event: string | React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -107,6 +113,12 @@ const ActivateAccountFields = () => {
 						formData={{
 							password: formData.password,
 							confirmPassword: formData.confirmPassword,
+							securityQuestion: formData.securityQuestion,
+							securityAnswer: formData.securityAnswer,
+							twoFactorEnabled: formData.twoFactorEnabled,
+							recoveryEmail: formData.recoveryEmail,
+							email: formData.email,
+							confirmEmail: formData.confirmEmail,
 						}}
 						onChange={handleChange}
 					/>
