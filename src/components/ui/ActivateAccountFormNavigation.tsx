@@ -27,7 +27,7 @@ const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep }) => {
 	const navigate = useNavigate();
 	const handleNavigate = () => {
 		toast.success("Account activated successfully!");
-		setTimeout(() => navigate("/dashboard"), 2000);
+		setTimeout(() => navigate("/account-activated"), 2000);
 	};
 
 	return (

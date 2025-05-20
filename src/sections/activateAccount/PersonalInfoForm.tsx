@@ -1,6 +1,6 @@
 import { Add, Person3Outlined } from "@mui/icons-material";
 import "react-phone-input-2/lib/style.css";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 interface personalInfoFormProps {
 	formData: {
@@ -16,24 +16,40 @@ interface personalInfoFormProps {
 }
 
 const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange }) => {
+	const [checked, setChecked] = useState(false);
+
 	const frontInputRef = useRef<HTMLInputElement | null>(null);
 	const backInputRef = useRef<HTMLInputElement | null>(null);
-
 	const [frontImage, setFrontImage] = useState<string | null>(null);
 	const [backImage, setBackImage] = useState<string | null>(null);
 
-	const [checked, setChecked] = useState(false);
-
 	const handleImageChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
-		setImage: React.Dispatch<React.SetStateAction<string | null>>
+		setImage: React.Dispatch<React.SetStateAction<string | null>>,
+		key: string
 	) => {
 		const file = e.target.files && e.target.files[0];
 		if (file) {
-			const imageUrl = URL.createObjectURL(file);
-			setImage(imageUrl);
+			const reader = new FileReader();
+			reader.onload = () => {
+				const imageDataUrl = reader.result as string;
+				setImage(imageDataUrl);
+				localStorage.setItem(key, imageDataUrl);
+			};
+			reader.readAsDataURL(file);
 		}
 	};
+
+	useEffect(() => {
+		const front = localStorage.getItem("frontImage");
+		const back = localStorage.getItem("backImage");
+
+		if (front) setFrontImage(front);
+		if (back) setBackImage(back);
+	}, []);
+
+	localStorage.removeItem("idFrontImage");
+	localStorage.removeItem("idBackImage");
 
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
@@ -132,14 +148,14 @@ const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange 
 							accept="image/*"
 							className="hidden"
 							ref={frontInputRef}
-							onChange={(e) => handleImageChange(e, setFrontImage)}
+							onChange={(e) => handleImageChange(e, setFrontImage, "frontImage")}
 						/>
 						<div
 							onClick={() => frontInputRef.current && frontInputRef.current.click()}
 							className="w-full cursor-pointer h-[25rem] rounded-xl border border-tertiary bg-transparent flex justify-center items-center relative overflow-hidden"
 						>
 							{frontImage ? (
-								<img src={frontImage} alt="Front" className="w-full h-full object-cover rounded-xl" />
+								<img src={frontImage} alt="Front" className=" p-4 shadow-2xl w-full h-full object-cover rounded-xl" />
 							) : (
 								<span className="text-2xl flex items-center gap-x-3">
 									<Add className="!text-5xl" />
@@ -156,14 +172,14 @@ const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange 
 							accept="image/*"
 							className="hidden"
 							ref={backInputRef}
-							onChange={(e) => handleImageChange(e, setBackImage)}
+							onChange={(e) => handleImageChange(e, setBackImage, "backImage")}
 						/>
 						<div
 							onClick={() => backInputRef.current && backInputRef.current.click()}
 							className="w-full cursor-pointer h-[25rem] rounded-xl border border-tertiary bg-transparent flex justify-center items-center relative overflow-hidden"
 						>
 							{backImage ? (
-								<img src={backImage} alt="Back" className="w-full h-full object-cover rounded-xl" />
+								<img src={backImage} alt="Back" className=" p-4 shadow-2xl w-full h-full object-cover rounded-xl" />
 							) : (
 								<span className="text-2xl flex items-center gap-x-3">
 									<Add className="!text-5xl" />
