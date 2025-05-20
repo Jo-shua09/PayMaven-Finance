@@ -1,24 +1,28 @@
 import ActivateAccountHeader from "../../layouts/ActivateAccountHeader";
-import auth from "/src/assets/images/auth.svg";
-import avatar from "/src/assets/images/avatar.svg";
-import checked from "/src/assets/images/checked.svg";
-import laptop from "/src/assets/images/laptop.svg";
-import oval from "/src/assets/images/oval.svg";
+import auth from "/src/assets/images/auth.png";
 
 const ActivateAccountSuccess = () => {
 	return (
 		<div className="w-full h-screen">
 			<ActivateAccountHeader />
 			<div className="w-full section h-full max-h-full">
-				<div className="relative m-auto flex items-center border w-1/2 justify-center h-full">
-					<img src={laptop} alt="" className="w-fit h-fit object-cover" />
-					<img src={avatar} alt="" className="w-fit h-fit object-cover absolute top-1/3 left-[17rem]" />
-					<img src={auth} alt="" className="w-fit h-fit object-cover absolute top-2/5 left-[10rem]" />
-					<img
-						src={checked}
-						alt=""
-						className="w-fit h-fit object-cover absolute top-[22rem] right-[19rem] rounded-full bg-[#f8f8f8] z-10 p-5"
-					/>
+				<div className="w-full m-auto h-full flex flex-col justify-center items-center">
+					<div className="w-[30rem] h-[30rem]">
+						<img src={auth} alt="" className=" w-full h-full object-cover" />
+					</div>
+					<div className="w-1/3 border mt-10 text-ceneter items-center flex-col flex space-y-6">
+						<h2 className="text-5xl font-semibold font-head normal-case">Activated account</h2>
+						<p className="text-3xl font-medium normal-case">
+							Your account has been successfully activated. Get ready to explore and enjoy our services.
+						</p>
+						<button
+							className="w-full cursor-pointer hover:scale-95 text-3xl py-5 bg-secondary text-center font-semibold text-white rounded-xl"
+							disabled={timer > 0}
+							onClick={() => (window.location.href = "/dashboard")}
+						>
+							Go to dashboard {timer > 0 ? `(${timer}s)` : ""}
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
