@@ -4,8 +4,9 @@ import ActivateAccountStepper from "../components/ui/ActivateAccountStepper";
 import PersonalInfoForm from "../sections/activateAccount/PersonalInfoForm";
 import BankAccountForm from "../sections/activateAccount/BankAccountForm";
 import SecureAccountForm from "../sections/activateAccount/SecureAccountForm";
-// import ReviewInfo from "../sections/activateAccount/ReviewInfo";
+import ReviewInfo from "../sections/activateAccount/ReviewInfo";
 import ActivateAccountFormNavigation from "../components/ui/ActivateAccountFormNavigation";
+import { toast } from "react-toastify";
 
 const ActivateAccountFields = () => {
 	const [step, setStep] = useState(1);
@@ -123,10 +124,34 @@ const ActivateAccountFields = () => {
 						onChange={handleChange}
 					/>
 				);
-			// case 5:
-			// 	return <ReviewInfo formData={formData} />;
+			case 5:
+				return <ReviewInfo formData={formData} />;
 			default:
 				return null;
+		}
+	};
+
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	const handleSubmit = async () => {
+		setIsSubmitting(true);
+		try {
+			// Here you would typically send the data to your backend API
+			// Example:
+			// const response = await axios.post('/api/activate-account', formData);
+
+			// Clear localStorage images after successful submission
+			localStorage.removeItem("idFrontImage");
+			localStorage.removeItem("idBackImage");
+
+			// Return true to indicate success
+			return true;
+		} catch (error) {
+			console.error("Submission error:", error);
+			toast.error("Failed to submit application. Please try again.");
+			return false;
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 
@@ -140,7 +165,12 @@ const ActivateAccountFields = () => {
 				<ActivateAccountStepper currentStep={step} />
 				<div className="w-full space-y-6 md:flex-[6]">{renderForm()}</div>
 			</div>
-			<ActivateAccountFormNavigation step={step} setStep={setStep} />
+			<ActivateAccountFormNavigation
+				step={step}
+				setStep={setStep}
+				isSubmitting={isSubmitting}
+				onSubmit={handleSubmit}
+			/>
 		</div>
 	);
 };
