@@ -32,7 +32,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 
 			<div className="w-full space-y-10 !mb-20">
 				{/* Security Options Toggle */}
-				<div className="w-full flex items-center gap-10 flex-wrap md:flex-nowrap">
+				<div className="w-[60%] flex items-center gap-10 flex-wrap md:flex-nowrap">
 					<div
 						onClick={() => setActiveOption("password")}
 						className={`flex items-center gap-x-5 w-full border-2 rounded-xl p-8 cursor-pointer transition-all ${
@@ -48,7 +48,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 							onChange={() => setActiveOption("password")}
 							className="ml-2 accent-secondary cursor-pointer !h-6 !w-6"
 						/>
-						<span className="text-3xl font-semibold">Set strong password</span>
+						<span className="text-2xl font-semibold">Set strong password</span>
 					</div>
 
 					<div
@@ -66,7 +66,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 							onChange={() => setActiveOption("recoveryEmail")}
 							className="ml-2 accent-secondary cursor-pointer !h-6 !w-6"
 						/>
-						<span className="text-3xl font-semibold">Enable Two-Factor Authentication (2FA)</span>
+						<span className="text-2xl font-semibold text-nowrap">Enable Two-Factor Authentication (2FA)</span>
 					</div>
 				</div>
 
@@ -104,7 +104,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 									name="confirmPassword"
 									value={formData.confirmPassword}
 									onChange={onChange}
-									placeholder="Confirm password"
+									placeholder="Re-enter password"
 									className="bg-tertiary focus:border border-secondary pl-5 pr-12 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 								/>
 								<button
@@ -147,7 +147,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 								name="confirmEmail"
 								value={formData.confirmEmail}
 								onChange={onChange}
-								placeholder="Confirm email"
+								placeholder="Re-enter email"
 								className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 							/>
 						</div>
