@@ -1,6 +1,6 @@
 import { Add, Person3Outlined } from "@mui/icons-material";
 import "react-phone-input-2/lib/style.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 interface personalInfoFormProps {
 	formData: {
@@ -16,40 +16,55 @@ interface personalInfoFormProps {
 }
 
 const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange }) => {
-	const [checked, setChecked] = useState(false);
-
 	const frontInputRef = useRef<HTMLInputElement | null>(null);
 	const backInputRef = useRef<HTMLInputElement | null>(null);
 	const [frontImage, setFrontImage] = useState<string | null>(null);
 	const [backImage, setBackImage] = useState<string | null>(null);
+	const [checked, setChecked] = useState(false);
 
 	const handleImageChange = (
 		e: React.ChangeEvent<HTMLInputElement>,
-		setImage: React.Dispatch<React.SetStateAction<string | null>>,
-		key: string
+		setImage: React.Dispatch<React.SetStateAction<string | null>>
 	) => {
 		const file = e.target.files && e.target.files[0];
+		e.preventDefault();
 		if (file) {
-			const reader = new FileReader();
-			reader.onload = () => {
-				const imageDataUrl = reader.result as string;
-				setImage(imageDataUrl);
-				localStorage.setItem(key, imageDataUrl);
-			};
-			reader.readAsDataURL(file);
+			const imageUrl = URL.createObjectURL(file);
+			setImage(imageUrl);
 		}
 	};
+	// const frontInputRef = useRef<HTMLInputElement | null>(null);
+	// const backInputRef = useRef<HTMLInputElement | null>(null);
+	// const [frontImage, setFrontImage] = useState<string | null>(null);
+	// const [backImage, setBackImage] = useState<string | null>(null);
 
-	useEffect(() => {
-		const front = localStorage.getItem("frontImage");
-		const back = localStorage.getItem("backImage");
+	// const handleImageChange = (
+	// 	e: React.ChangeEvent<HTMLInputElement>,
+	// 	setImage: React.Dispatch<React.SetStateAction<string | null>>,
+	// 	key: string
+	// ) => {
+	// 	const file = e.target.files && e.target.files[0];
+	// 	if (file) {
+	// 		const reader = new FileReader();
+	// 		reader.onload = () => {
+	// 			const imageDataUrl = reader.result as string;
+	// 			setImage(imageDataUrl);
+	// 			localStorage.setItem(key, imageDataUrl);
+	// 		};
+	// 		reader.readAsDataURL(file);
+	// 	}
+	// };
 
-		if (front) setFrontImage(front);
-		if (back) setBackImage(back);
-	}, []);
+	// useEffect(() => {
+	// 	const front = localStorage.getItem("frontImage");
+	// 	const back = localStorage.getItem("backImage");
 
-	localStorage.removeItem("idFrontImage");
-	localStorage.removeItem("idBackImage");
+	// 	if (front) setFrontImage(front);
+	// 	if (back) setBackImage(back);
+	// }, []);
+
+	// localStorage.removeItem("idFrontImage");
+	// localStorage.removeItem("idBackImage");
 
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
@@ -148,7 +163,7 @@ const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange 
 							accept="image/*"
 							className="hidden"
 							ref={frontInputRef}
-							onChange={(e) => handleImageChange(e, setFrontImage, "frontImage")}
+							onChange={(e) => handleImageChange(e, setFrontImage)}
 						/>
 						<div
 							onClick={() => frontInputRef.current && frontInputRef.current.click()}
@@ -172,7 +187,7 @@ const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange 
 							accept="image/*"
 							className="hidden"
 							ref={backInputRef}
-							onChange={(e) => handleImageChange(e, setBackImage, "backImage")}
+							onChange={(e) => handleImageChange(e, setBackImage)}
 						/>
 						<div
 							onClick={() => backInputRef.current && backInputRef.current.click()}

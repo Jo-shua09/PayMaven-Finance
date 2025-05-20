@@ -1,7 +1,26 @@
+import { useEffect, useState } from "react";
 import ActivateAccountHeader from "../../layouts/ActivateAccountHeader";
 import auth from "/src/assets/images/auth.png";
+import { useNavigate } from "react-router-dom";
 
 const ActivateAccountSuccess = () => {
+	const [count, setCount] = useState<number>(20);
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (count === 0) {
+			navigate("/dashboard");
+			return;
+		}
+
+		const timer = setInterval(() => {
+			setCount((prev) => prev - 1);
+		}, 1000);
+
+		return () => clearInterval(timer);
+	}, [count, navigate]);
+
 	return (
 		<div className="w-full h-screen">
 			<ActivateAccountHeader />
@@ -17,10 +36,9 @@ const ActivateAccountSuccess = () => {
 						</p>
 						<button
 							className="w-full cursor-pointer hover:scale-95 text-3xl py-5 bg-secondary text-center font-semibold text-white rounded-xl"
-							disabled={timer > 0}
 							onClick={() => (window.location.href = "/dashboard")}
 						>
-							Go to dashboard {timer > 0 ? `(${timer}s)` : ""}
+							Go to dashboard ({count})
 						</button>
 					</div>
 				</div>
