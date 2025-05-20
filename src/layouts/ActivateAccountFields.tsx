@@ -7,6 +7,7 @@ import SecureAccountForm from "../sections/activateAccount/SecureAccountForm";
 import ReviewInfo from "../sections/activateAccount/ReviewInfo";
 import ActivateAccountFormNavigation from "../components/ui/ActivateAccountFormNavigation";
 import { toast } from "react-toastify";
+// import { validatePersonalInfo } from "../utils/Validation";
 
 const ActivateAccountFields = () => {
 	const [step, setStep] = useState(1);
@@ -59,6 +60,7 @@ const ActivateAccountFields = () => {
 		const { name, value } = event.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
+	const [checkedAddress, setCheckedAddress] = useState(false);
 
 	const renderForm = () => {
 		switch (step) {
@@ -91,6 +93,8 @@ const ActivateAccountFields = () => {
 							personalAddress: formData.personalAddress,
 						}}
 						onChange={handleChange}
+						checked={checkedAddress}
+						setChecked={setCheckedAddress}
 					/>
 				);
 			case 3:
@@ -170,6 +174,7 @@ const ActivateAccountFields = () => {
 				setStep={setStep}
 				isSubmitting={isSubmitting}
 				onSubmit={handleSubmit}
+				formData={{ ...formData, checkedAddress }}
 			/>
 		</div>
 	);

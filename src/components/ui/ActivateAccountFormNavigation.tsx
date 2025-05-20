@@ -1,18 +1,108 @@
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import {
+	validateBankAccount,
+	validateBusinessInfo,
+	validatePersonalInfo,
+	validateSecurityInfo,
+} from "../../utils/Validation";
+
+type BusinessInfo = {
+	businessName: string;
+	businessType: string;
+	number: string;
+	businessEmail: string;
+	businessAddress: string;
+	cityName: string;
+	stateProvince: string;
+	countryRegion: string;
+};
+
+type PersonalInfo = {
+	personalName: string;
+	personalID: string;
+	personalEmail: string;
+	personalNumber: string;
+	nation: string;
+	dateOfBirth: string;
+	personalAddress: string;
+	checkedAddress: boolean;
+};
+
+type BankAccountInfo = {
+	bankName: string;
+	bankBranch: string;
+	accountNumber: string;
+	holderName: string;
+	cardNumber: string;
+	expirationDate: string;
+	cvv: string;
+};
+
+type SecurityInfo = {
+	password: string;
+	confirmPassword: string;
+	securityQuestion: string;
+	securityAnswer: string;
+	email: string;
+	confirmEmail: string;
+};
+
+type FormData = BusinessInfo & PersonalInfo & BankAccountInfo & SecurityInfo;
 
 type Props = {
 	step: number;
 	setStep: (val: number) => void;
 	isSubmitting?: boolean;
 	onSubmit?: () => Promise<boolean>;
+	formData: FormData;
+	cardType?: string | null;
+	checkedAddress?: boolean;
 };
 
-const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep, isSubmitting = false, onSubmit }) => {
+const ActivateAccountFormNavigation: React.FC<Props> = ({
+	step,
+	setStep,
+	isSubmitting = false,
+	onSubmit,
+	formData,
+	checkedAddress = false,
+	cardType = null,
+}) => {
 	const navigate = useNavigate();
 
+	const validateCurrentStep = () => {
+		let errors: string[] = [];
+
+		switch (step) {
+			case 1:
+				errors = validateBusinessInfo(formData);
+				break;
+			case 2:
+				errors = validatePersonalInfo(formData, checkedAddress);
+				break;
+			case 3:
+				errors = validateBankAccount(formData, cardType);
+				break;
+			case 4:
+				errors = validateSecurityInfo(formData);
+				break;
+			default:
+				break;
+		}
+
+		if (errors.length > 0) {
+			// toast.error("Please fill all required fields before continuing");
+			errors.forEach((error) => toast.error(error));
+			return false;
+		}
+		return true;
+	};
+
 	const handleNext = () => {
+		if (!validateCurrentStep()) return;
+
 		const nextStep = step + 1;
 		const stepMessages = {
 			2: "Business info saved, moving to personal Info.",
@@ -29,12 +119,13 @@ const ActivateAccountFormNavigation: React.FC<Props> = ({ step, setStep, isSubmi
 	};
 
 	const handleSubmit = async () => {
+		if (!validateCurrentStep()) return;
 		if (!onSubmit) return;
 
 		const success = await onSubmit();
 		if (success) {
 			toast.success("Account activated successfully!");
-			setTimeout(() => navigate("/account-activated"), 2000);
+			setTimeout(() => navigate("/account-activated"), 500);
 		}
 	};
 

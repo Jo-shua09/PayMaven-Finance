@@ -1,8 +1,7 @@
 import { Add, Person3Outlined } from "@mui/icons-material";
-import "react-phone-input-2/lib/style.css";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-interface personalInfoFormProps {
+interface PersonalInfoFormProps {
 	formData: {
 		personalName: string;
 		personalID: string;
@@ -13,14 +12,27 @@ interface personalInfoFormProps {
 		personalAddress: string;
 	};
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	checked: boolean;
+	setChecked: (val: boolean) => void;
+	errors?: string[];
 }
 
-const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange }) => {
+const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
+	formData,
+	onChange,
+	checked,
+	setChecked,
+	errors = [],
+}) => {
+	// Helper function to check if field has error
+	const hasError = (fieldName: string) => {
+		return errors.some((err) => err.toLowerCase().includes(fieldName.toLowerCase()));
+	};
 	const frontInputRef = useRef<HTMLInputElement | null>(null);
 	const backInputRef = useRef<HTMLInputElement | null>(null);
 	const [frontImage, setFrontImage] = useState<string | null>(null);
 	const [backImage, setBackImage] = useState<string | null>(null);
-	const [checked, setChecked] = useState(false);
+	// const [checked, setChecked] = useState(false);
 
 	// Load images from localStorage when component mounts
 	useEffect(() => {
@@ -47,14 +59,6 @@ const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange 
 			reader.readAsDataURL(file);
 		}
 	};
-
-	// Clear images when needed (optional)
-	// const clearImages = () => {
-	// 	localStorage.removeItem("idFrontImage");
-	// 	localStorage.removeItem("idBackImage");
-	// 	setFrontImage(null);
-	// 	setBackImage(null);
-	// };
 
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
@@ -208,27 +212,33 @@ const PersonalInfoForm: React.FC<personalInfoFormProps> = ({ formData, onChange 
 
 			<div className="flex items-center gap-x-4 text-2xl font-semibold normal-case">
 				<input
-					required
 					type="checkbox"
 					name="checkedAddress"
-					onClick={() => setChecked(!checked)}
-					className="!bg-transparent accent-secondary cursor-pointer "
+					checked={checked}
+					onChange={() => setChecked(!checked)}
+					className="!bg-transparent accent-secondary cursor-pointer"
 				/>
 				Same business address
 			</div>
 
-			<div className={`${!checked ? "translate-y-0" : "opacity-0 hidden translate-y-full"} w-full md:w-1/2 space-y-2`}>
-				<label className="text-[1.7rem] font-semibold"> address</label>
-				<input
-					required
-					type="text"
-					name="personalAddress"
-					value={formData.personalAddress}
-					onChange={onChange}
-					placeholder="Enter address"
-					className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
-				/>
-			</div>
+			{/* Personal Address Field (only shown when checkbox is unchecked) */}
+			{!checked && (
+				<div className="w-full md:w-1/2 space-y-2">
+					<label className="text-[1.7rem] font-semibold">Personal Address</label>
+					<input
+						required
+						type="text"
+						name="personalAddress"
+						value={formData.personalAddress}
+						onChange={onChange}
+						placeholder="Enter personal address"
+						className={`bg-tertiary normal-case focus:border ${
+							hasError("personal address") ? "border-red-500" : "border-secondary"
+						} pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]`}
+					/>
+					{hasError("personal address") && <p className="text-red-500 text-lg">Personal address is required</p>}
+				</div>
+			)}
 		</div>
 	);
 };

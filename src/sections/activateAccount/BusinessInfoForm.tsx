@@ -14,9 +14,14 @@ interface BusinessInfoFormProps {
 		countryRegion: string;
 	};
 	onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | string) => void;
+	errors?: string[];
 }
 
-const BusinessInfoForm: React.FC<BusinessInfoFormProps> = ({ formData, onChange }) => {
+const BusinessInfoForm: React.FC<BusinessInfoFormProps> = ({ formData, onChange, errors = [] }) => {
+	const hasError = (field: string) => {
+		return errors.some((err) => err.toLowerCase().includes(field.toLowerCase()));
+	};
+
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
 			<div className="w-full flex items-center gap-x-5">
@@ -34,10 +39,12 @@ const BusinessInfoForm: React.FC<BusinessInfoFormProps> = ({ formData, onChange 
 						value={formData.businessName}
 						onChange={onChange}
 						placeholder="Enter business name"
-						className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+						className={`bg-tertiary normal-case focus:border ${
+							hasError("business name") ? "border-red-500" : "border-secondary"
+						} pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]`}
 					/>
+					{hasError("business name") && <p className="text-red-500 text-lg">Business name is required</p>}
 				</div>
-
 				<div className="w-full space-y-2">
 					<label className="text-[1.7rem] font-semibold">business type</label>
 					<select

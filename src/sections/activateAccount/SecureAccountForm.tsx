@@ -48,7 +48,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 							onChange={() => setActiveOption("password")}
 							className="ml-2 accent-secondary cursor-pointer !h-6 !w-6"
 						/>
-						<span className="text-2xl font-semibold">Set strong password</span>
+						<span className="text-2xl text-nowrap font-semibold">Set strong password</span>
 					</div>
 
 					<div
