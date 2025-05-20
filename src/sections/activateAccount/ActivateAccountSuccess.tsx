@@ -30,7 +30,7 @@ const ActivateAccountSuccess = () => {
 						<img src={auth} alt="" className=" w-full h-full object-cover" />
 					</div>
 					<div className="lg:w-[30%] sm:w-[45%] w-[75%] mt-10 text-ceneter items-center flex-col flex space-y-6">
-						<h2 className="text-5xl font-semibold font-head normal-case">Activated account</h2>
+						<h2 className="text-5xl font-semibold font-head normal-case">Account activated</h2>
 						<p className="text-3xl text-center font-medium normal-case">
 							Your account has been successfully activated. Get ready to explore and enjoy our services.
 						</p>

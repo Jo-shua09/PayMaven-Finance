@@ -1,4 +1,4 @@
-import { Security } from "@mui/icons-material";
+import { RemoveRedEye, VisibilityOff, Security } from "@mui/icons-material";
 import { useState } from "react";
 
 interface SecureAccountFormProps {
@@ -16,7 +16,12 @@ interface SecureAccountFormProps {
 }
 
 const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChange }) => {
-	const [activeOption, setActiveOption] = useState<"password" | "recoveryEmail" | null>(null);
+	const [activeOption, setActiveOption] = useState<"password" | "recoveryEmail">("password");
+	const [showPassword, setShowPassword] = useState(false);
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+	const togglePasswordVisibility = () => setShowPassword(!showPassword);
+	const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
 	return (
 		<div data-aos="fade-up" className="w-full space-y-8">
@@ -26,11 +31,14 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 			</div>
 
 			<div className="w-full space-y-10 !mb-20">
+				{/* Security Options Toggle */}
 				<div className="w-full flex items-center gap-10 flex-wrap md:flex-nowrap">
 					<div
 						onClick={() => setActiveOption("password")}
-						className={`flex items-center gap-x-5 w-full border rounded-xl p-8 cursor-pointer ${
-							activeOption === "password" ? "bg-secondary/20 border-secondary" : "bg-primary"
+						className={`flex items-center gap-x-5 w-full border-2 rounded-xl p-8 cursor-pointer transition-all ${
+							activeOption === "password"
+								? "bg-secondary/10 border-secondary shadow-md"
+								: "bg-primary border-gray-200 hover:border-gray-300"
 						}`}
 					>
 						<input
@@ -38,15 +46,17 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 							checked={activeOption === "password"}
 							name="securityOption"
 							onChange={() => setActiveOption("password")}
-							className="ml-2 accent-secondary cursor-pointer"
+							className="ml-2 accent-secondary cursor-pointer !h-6 !w-6"
 						/>
-						<span className="text-3xl font-semibold font-head">Set strong password</span>
+						<span className="text-3xl font-semibold">Set strong password</span>
 					</div>
 
 					<div
 						onClick={() => setActiveOption("recoveryEmail")}
-						className={`flex items-center gap-x-5 w-full border rounded-xl p-8 cursor-pointer ${
-							activeOption === "recoveryEmail" ? "bg-secondary/20 border-secondary" : "bg-primary"
+						className={`flex items-center gap-x-5 w-full border-2 rounded-xl p-8 cursor-pointer transition-all ${
+							activeOption === "recoveryEmail"
+								? "bg-secondary/10 border-secondary shadow-md"
+								: "bg-primary border-gray-200 hover:border-gray-300"
 						}`}
 					>
 						<input
@@ -54,42 +64,66 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 							checked={activeOption === "recoveryEmail"}
 							name="securityOption"
 							onChange={() => setActiveOption("recoveryEmail")}
-							className="ml-2 accent-secondary cursor-pointer"
+							className="ml-2 accent-secondary cursor-pointer !h-6 !w-6"
 						/>
-						<span className="text-3xl font-semibold font-head">Enable Two-Factor Authentication (2FA)</span>
+						<span className="text-3xl font-semibold">Enable Two-Factor Authentication (2FA)</span>
 					</div>
 				</div>
 
+				{/* Password Section */}
 				{activeOption === "password" && (
 					<form className="w-full grid sm:grid-cols-2 grid-cols-1 gap-10">
-						<div className="w-full space-y-2">
+						<div className="w-full space-y-2 relative">
 							<label className="text-[1.7rem] font-semibold">Enter password</label>
-							<input
-								required
-								type="password"
-								name="password"
-								value={formData.password}
-								onChange={onChange}
-								placeholder="Enter password"
-								className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
-							/>
+							<div className="relative">
+								<input
+									required
+									type={showPassword ? "text" : "password"}
+									name="password"
+									value={formData.password}
+									onChange={onChange}
+									placeholder="Enter at least 8+ characters"
+									className="bg-tertiary focus:border border-secondary pl-5 pr-12 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+								/>
+								<button
+									type="button"
+									onClick={togglePasswordVisibility}
+									className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-secondary"
+								>
+									{showPassword ? <VisibilityOff className="!text-4xl" /> : <RemoveRedEye className="!text-4xl" />}
+								</button>
+							</div>
 						</div>
-						<div className="w-full space-y-2">
+
+						<div className="w-full space-y-2 relative">
 							<label className="text-[1.7rem] font-semibold">Confirm password</label>
-							<input
-								required
-								type="password"
-								name="confirmPassword"
-								value={formData.confirmPassword}
-								onChange={onChange}
-								placeholder="Confirm password"
-								className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
-							/>
+							<div className="relative">
+								<input
+									required
+									type={showConfirmPassword ? "text" : "password"}
+									name="confirmPassword"
+									value={formData.confirmPassword}
+									onChange={onChange}
+									placeholder="Confirm password"
+									className="bg-tertiary focus:border border-secondary pl-5 pr-12 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+								/>
+								<button
+									type="button"
+									onClick={toggleConfirmPasswordVisibility}
+									className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-secondary"
+								>
+									{showConfirmPassword ? (
+										<VisibilityOff className="!text-4xl" />
+									) : (
+										<RemoveRedEye className="!text-4xl" />
+									)}
+								</button>
+							</div>
 						</div>
 					</form>
 				)}
 
-				{/* Two Factor Auth */}
+				{/* Two Factor Auth Section */}
 				{activeOption === "recoveryEmail" && (
 					<form className="w-full grid sm:grid-cols-2 grid-cols-1 gap-10">
 						<div className="w-full space-y-2">
@@ -101,9 +135,10 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 								value={formData.email}
 								onChange={onChange}
 								placeholder="Enter email"
-								className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+								className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 							/>
 						</div>
+
 						<div className="w-full space-y-2">
 							<label className="text-[1.7rem] font-semibold">Confirm recovery email</label>
 							<input
@@ -113,38 +148,41 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 								value={formData.confirmEmail}
 								onChange={onChange}
 								placeholder="Confirm email"
-								className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+								className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 							/>
 						</div>
 					</form>
 				)}
 			</div>
 
-			{/* Security Question */}
-			<form className="w-full">
+			{/* Security Question Section */}
+			<div className="w-full space-y-4">
 				<label className="text-[1.7rem] font-semibold">Security Question</label>
-				<div className="w-full space-y-8">
-					<select
-						name="securityQuestion"
-						value={formData.securityQuestion}
-						onChange={onChange}
-						className="bg-tertiary cursor-pointer appearance-none focus:border border-secondary capitalize pl-5 text-[1.7rem] text-black font-semibold rounded-xl w-full h-[5.5rem]"
-					>
-						<option value="">Select a question</option>
-						<option value="mother_maiden">What is your mother's maiden name?</option>
-						<option value="first_pet">What was your first pet's name?</option>
-						<option value="birth_city">What city were you born in?</option>
-					</select>
+				<select
+					name="securityQuestion"
+					value={formData.securityQuestion}
+					onChange={onChange}
+					className="bg-tertiary cursor-pointer appearance-none focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold rounded-xl w-full h-[5.5rem] mb-4"
+				>
+					<option value="">Select a security question</option>
+					<option value="mother_maiden">What is your mother's maiden name?</option>
+					<option value="first_pet">What was your first pet's name?</option>
+					<option value="birth_city">What city were you born in?</option>
+					<option value="elementary_school">What elementary school did you attend?</option>
+					<option value="favorite_teacher">Who was your favorite teacher?</option>
+				</select>
+
+				<div className="w-full space-y-2">
 					<input
 						type="text"
 						name="securityAnswer"
 						value={formData.securityAnswer}
 						onChange={onChange}
 						placeholder="Your answer"
-						className="bg-tertiary normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
+						className="bg-tertiary focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 					/>
 				</div>
-			</form>
+			</div>
 		</div>
 	);
 };
