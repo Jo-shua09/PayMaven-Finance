@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { auth, googleProvider } from "../config/Firebase";
 import { toast } from "react-toastify";
+import { validatePassword } from "../utils/Validation";
 
 type AuthProps = {
 	email: string;
@@ -17,6 +18,15 @@ type AuthProps = {
 
 export const signUp = async ({ email, password, navigate, setLoading }: AuthProps) => {
 	setLoading(true);
+
+	// Validate password before attempting signup
+	const passwordError = validatePassword(password);
+	if (passwordError) {
+		toast.error(passwordError);
+		setLoading(false);
+		return;
+	}
+
 	try {
 		await createUserWithEmailAndPassword(auth, email, password);
 		toast.success("Account created successfully!");
@@ -30,14 +40,20 @@ export const signUp = async ({ email, password, navigate, setLoading }: AuthProp
 
 export const signIn = async ({ email, password, navigate, setLoading }: AuthProps) => {
 	setLoading(true);
+
+	// Basic validation before API call
+	if (!password) {
+		toast.error("Please enter your password");
+		setLoading(false);
+		return;
+	}
+
 	try {
 		const methods = await fetchSignInMethodsForEmail(auth, email);
 		if (methods.length === 0) {
 			toast.info("User not found. Please sign up first.");
 			setTimeout(() => navigate("/sign-up"), 1000);
 			return;
-		} else if (!password) {
-			toast.error("Incorrect password. Please try again.");
 		}
 
 		await signInWithEmailAndPassword(auth, email, password);
@@ -90,6 +106,7 @@ export const signInWithGoogle = async ({ navigate, setLoading }: GoogleAuthProps
 
 function handleError(error: unknown, navigate: (path: string) => void) {
 	let errorCode = "unknown";
+	let errorMessage = "Authentication failed";
 
 	if (typeof error === "object" && error !== null && "code" in error) {
 		errorCode = (error as { code: string }).code;
@@ -97,38 +114,35 @@ function handleError(error: unknown, navigate: (path: string) => void) {
 
 	switch (errorCode) {
 		case "auth/email-already-in-use":
-			toast.error("Email already in use. Please sign in.");
+			errorMessage = "Email already in use. Please sign in.";
 			setTimeout(() => navigate("/login"), 1000);
 			break;
 		case "auth/user-not-found":
-			toast.info("User not found. Please sign up.");
+			errorMessage = "User not found. Please sign up.";
 			setTimeout(() => navigate("/sign-up"), 1000);
 			break;
 		case "auth/wrong-password":
-			toast.error("Incorrect password. Please try again.");
+			errorMessage = "Incorrect password. Please try again.";
 			break;
 		case "auth/invalid-email":
-			toast.error("Invalid email format.");
+			errorMessage = "Invalid email format.";
 			break;
 		case "auth/invalid-credential":
-			toast.error("Invalid email or password.");
+			errorMessage = "Invalid email or password.";
+			break;
+		case "auth/weak-password":
+			errorMessage = "Password should be at least 6 characters";
 			break;
 		case "auth/popup-closed-by-user":
-			toast.info("Sign-in popup closed. Please try again.");
+			errorMessage = "Sign-in popup closed. Please try again.";
+			break;
+		case "auth/too-many-requests":
+			errorMessage = "Too many attempts. Please try again later.";
 			break;
 		default:
-			toast.error("Authentication failed: " + errorCode);
+			errorMessage = `Authentication failed: ${errorCode}`;
 			break;
 	}
-}
 
-// const logout = async () => {
-// 	try {
-// 		await signOut(auth);
-// 		console.log("User signed out successfully");
-// 		toast.success("Signed out successfully!");
-// 		setTimeout(() => Navigate(""), 1000);
-// 	} catch (error) {
-// 		console.error("Error signing out:", error);
-// 	}
-// };
+	toast.error(errorMessage);
+}

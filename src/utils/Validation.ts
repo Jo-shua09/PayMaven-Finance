@@ -132,14 +132,17 @@ export const validateBankAccount = (
 	return errors;
 };
 
-export const validateSecurityInfo = (data: {
-	password: string;
-	confirmPassword: string;
-	securityQuestion: string;
-	securityAnswer: string;
-	email: string;
-	confirmEmail: string;
-}) => {
+export const validateSecurityInfo = (
+	password: string,
+	data: {
+		password: string;
+		confirmPassword: string;
+		securityQuestion: string;
+		securityAnswer: string;
+		email: string;
+		confirmEmail: string;
+	}
+) => {
 	const errors: string[] = [];
 
 	// Password validation
@@ -152,6 +155,22 @@ export const validateSecurityInfo = (data: {
 	if (!data.securityQuestion) errors.push("Security question is required");
 	if (!data.securityAnswer.trim()) errors.push("Security answer is required");
 
+	if (password.length < 8) {
+		return "Password must be at least 8 characters long";
+	}
+	if (!/[A-Z]/.test(password)) {
+		return "Password must contain at least one uppercase letter";
+	}
+	if (!/[a-z]/.test(password)) {
+		return "Password must contain at least one lowercase letter";
+	}
+	if (!/[0-9]/.test(password)) {
+		return "Password must contain at least one number";
+	}
+	if (!/[^A-Za-z0-9]/.test(password)) {
+		return "Password must contain at least one special character";
+	}
+
 	// Recovery email validation if enabled
 	if (data.email) {
 		if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
@@ -163,4 +182,24 @@ export const validateSecurityInfo = (data: {
 	}
 
 	return errors;
+};
+
+// Password validation helper
+export const validatePassword = (password: string) => {
+	if (password.length < 8) {
+		return "Password must be at least 8 characters long";
+	}
+	if (!/[A-Z]/.test(password)) {
+		return "Password must contain at least one uppercase letter";
+	}
+	if (!/[a-z]/.test(password)) {
+		return "Password must contain at least one lowercase letter";
+	}
+	if (!/[0-9]/.test(password)) {
+		return "Password must contain at least one number";
+	}
+	if (!/[^A-Za-z0-9]/.test(password)) {
+		return "Password must contain at least one special character";
+	}
+	return null;
 };
