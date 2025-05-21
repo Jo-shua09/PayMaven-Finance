@@ -1,4 +1,9 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+	createUserWithEmailAndPassword,
+	getAdditionalUserInfo,
+	signInWithEmailAndPassword,
+	signInWithPopup,
+} from "firebase/auth";
 import { auth, googleProvider } from "../config/Firebase";
 import { toast } from "react-toastify";
 
@@ -56,9 +61,17 @@ export const signUpWithGoogle = async ({ navigate, setLoading }: GoogleAuthProps
 export const signInWithGoogle = async ({ navigate, setLoading }: GoogleAuthProps) => {
 	setLoading(true);
 	try {
-		await signInWithPopup(auth, googleProvider);
-		toast.success("Signed in successfully!");
-		setTimeout(() => navigate("/dashboard"), 1000);
+		const result = await signInWithPopup(auth, googleProvider);
+		const additionalInfo = getAdditionalUserInfo(result);
+
+		if (additionalInfo?.isNewUser) {
+			// Sign-in attempted but user is not found in your existing system
+			toast.error("User not found. Please sign up first.");
+			setTimeout(() => navigate("/sign-up"), 1000);
+		} else {
+			toast.success("Signed in successfully!");
+			setTimeout(() => navigate("/dashboard"), 1000);
+		}
 	} catch (error: unknown) {
 		handleError(error, navigate);
 	} finally {
@@ -88,6 +101,7 @@ function handleError(error: unknown, navigate: (path: string) => void) {
 			break;
 	}
 }
+
 // const logout = async () => {
 // 	try {
 // 		await signOut(auth);
