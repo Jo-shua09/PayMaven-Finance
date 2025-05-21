@@ -65,7 +65,6 @@ export const signInWithGoogle = async ({ navigate, setLoading }: GoogleAuthProps
 		const additionalInfo = getAdditionalUserInfo(result);
 
 		if (additionalInfo?.isNewUser) {
-			// Sign-in attempted but user is not found in your existing system
 			toast.error("User not found. Please sign up first.");
 			setTimeout(() => navigate("/sign-up"), 1000);
 		} else {
@@ -95,6 +94,13 @@ function handleError(error: unknown, navigate: (path: string) => void) {
 			break;
 		case "auth/invalid-email":
 			toast.error("Invalid email address.");
+			break;
+		case "auth/wrong-password":
+			toast.error("Incorrect password. Please try again.");
+			break;
+		case "auth/user-not-found":
+			toast.info("User not found. Please sign up.");
+			// setTimeout(() => navigate("/sign-up"), 1000);
 			break;
 		default:
 			toast.error("Auth failed: " + errorCode);

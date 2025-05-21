@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import signImage from "/src/assets/images/signup_cover.jpg";
 import google from "/src/assets/images/google.png";
-import apple from "/src/assets/images/apple.png";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { RemoveRedEyeSharp, VisibilityOff } from "@mui/icons-material";
@@ -123,23 +122,22 @@ const SignUp_Login = () => {
 							</form>
 
 							<div className="mt-10 text-center w-full">
-								<h3 className="text-3xl font-semibold mb-4"> {isSignUp ? "Sign up with" : "Sign in with"}</h3>
+								<h3 className="text-3xl font-semibold mb-4 px-6 flex items-center gap-x-2">
+									{" "}
+									<hr className="border border-gray-300 w-full h-px" /> or{" "}
+									<hr className="border border-gray-300 w-full h-px" />
+								</h3>
 								<div className="flex justify-center gap-5">
 									<div
-										className="bg-tertiary px-10 flex items-center rounded-xl cursor-pointer hover:scale-95"
+										className="bg-tertiary px-10 w-full justify-center mx-5 space-x-5 flex items-center rounded-xl cursor-pointer hover:scale-95"
 										onClick={() =>
 											isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
 										}
 									>
-										<img loading="lazy" src={google} alt="Google" className="w-[5rem] h-[5rem] object-cover" />
-									</div>
-									<div
-										className="bg-tertiary px-10 flex items-center rounded-xl cursor-not-allowed hover:scale-95"
-										// onClick={() =>
-										// 	isSignUp ? signUpWithGoogle({ navigate, setLoading }) : signInWithGoogle({ navigate, setLoading })
-										// }
-									>
-										<img loading="lazy" src={apple} alt="Google" className="w-[7rem] h-[6rem] object-cover" />
+										<img loading="lazy" src={google} alt="Google" className="w-[4rem] h-[5rem] object-cover" />{" "}
+										<span className="text-[1.7rem] font-semibold normal-case">
+											{isSignUp ? "Sign up with google" : "Sign in with google"}
+										</span>
 									</div>
 								</div>
 							</div>
