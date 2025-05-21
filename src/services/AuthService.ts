@@ -1,5 +1,6 @@
 import {
 	createUserWithEmailAndPassword,
+	fetchSignInMethodsForEmail,
 	getAdditionalUserInfo,
 	signInWithEmailAndPassword,
 	signInWithPopup,
@@ -30,6 +31,15 @@ export const signUp = async ({ email, password, navigate, setLoading }: AuthProp
 export const signIn = async ({ email, password, navigate, setLoading }: AuthProps) => {
 	setLoading(true);
 	try {
+		const methods = await fetchSignInMethodsForEmail(auth, email);
+		if (methods.length === 0) {
+			toast.info("User not found. Please sign up first.");
+			setTimeout(() => navigate("/sign-up"), 1000);
+			return;
+		} else if (!password) {
+			toast.error("Incorrect password. Please try again.");
+		}
+
 		await signInWithEmailAndPassword(auth, email, password);
 		toast.success("Signed in successfully!");
 		setTimeout(() => navigate("/dashboard"), 1000);
@@ -80,30 +90,34 @@ export const signInWithGoogle = async ({ navigate, setLoading }: GoogleAuthProps
 
 function handleError(error: unknown, navigate: (path: string) => void) {
 	let errorCode = "unknown";
+
 	if (typeof error === "object" && error !== null && "code" in error) {
 		errorCode = (error as { code: string }).code;
 	}
+
 	switch (errorCode) {
 		case "auth/email-already-in-use":
 			toast.error("Email already in use. Please sign in.");
 			setTimeout(() => navigate("/login"), 1000);
 			break;
-		case "auth/invalid-credential":
-			toast.info("No user found. Please sign up first.");
+		case "auth/user-not-found":
+			toast.info("User not found. Please sign up.");
 			setTimeout(() => navigate("/sign-up"), 1000);
-			break;
-		case "auth/invalid-email":
-			toast.error("Invalid email address.");
 			break;
 		case "auth/wrong-password":
 			toast.error("Incorrect password. Please try again.");
 			break;
-		case "auth/user-not-found":
-			toast.info("User not found. Please sign up.");
-			// setTimeout(() => navigate("/sign-up"), 1000);
+		case "auth/invalid-email":
+			toast.error("Invalid email format.");
+			break;
+		case "auth/invalid-credential":
+			toast.error("Invalid email or password.");
+			break;
+		case "auth/popup-closed-by-user":
+			toast.info("Sign-in popup closed. Please try again.");
 			break;
 		default:
-			toast.error("Auth failed: " + errorCode);
+			toast.error("Authentication failed: " + errorCode);
 			break;
 	}
 }

@@ -55,7 +55,7 @@ const SignUp_Login = () => {
 										required
 										value={email}
 										onChange={(e) => setEmail(e.target.value)}
-										placeholder="example@gmail.com"
+										placeholder="Example@gmail.com"
 										className="bg-tertiary normal-case mt-1 focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 									/>
 								</div>
@@ -87,7 +87,7 @@ const SignUp_Login = () => {
 											required
 											value={password}
 											onChange={(e) => setPassword(e.target.value)}
-											placeholder="enter at least 8+ characters"
+											placeholder="Enter at least 8+ characters"
 											className="bg-tertiary mt-1 mb-5 placeholder:normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 										/>
 										{showPassword ? (
