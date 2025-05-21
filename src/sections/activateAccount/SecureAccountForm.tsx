@@ -32,7 +32,7 @@ const SecureAccountForm: React.FC<SecureAccountFormProps> = ({ formData, onChang
 
 			<div className="w-full space-y-10 !mb-20">
 				{/* Security Options Toggle */}
-				<div className="w-[60%] flex items-center gap-10 flex-wrap md:flex-nowrap">
+				<div className="w-[90%] flex items-center gap-10 flex-wrap md:flex-nowrap">
 					<div
 						onClick={() => setActiveOption("password")}
 						className={`flex items-center gap-x-5 w-full border-2 rounded-xl p-8 cursor-pointer transition-all ${
