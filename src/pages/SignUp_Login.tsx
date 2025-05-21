@@ -32,9 +32,9 @@ const SignUp_Login = () => {
 	const togglePassword = () => setShowPassword((prev) => !prev);
 
 	return (
-		<div className="w-full mx-auto  max-h-screen h-full">
-			<div className="w-full md:section min-h-[98vh] flex items-center justify-center gap-20 flex-wrap sm:flex-nowrap px-[3%] -mt-20 md:-mt-10">
-				<div className="md:w-1/3 w-full h-[90%] overflow-y-hidden">
+		<div className="w-full mx-auto h-full max-h-screen mt-28 pb-20 border-blue-600">
+			<div className="w-full md:section h-full border-green-600 flex items-center justify-center gap-20 flex-wrap sm:flex-nowrap -mt-20 md:-mt-10">
+				<div className="md:w-1/3 md:mt-0 mt-14 w-[95%] h-full border-red-600">
 					<div data-aos="fade-right" className="w-full h-full">
 						<div className="flex flex-col items-center justify-center">
 							<div className="flex items-center gap-x-3 mb-10">
@@ -121,8 +121,8 @@ const SignUp_Login = () => {
 								)}
 							</form>
 
-							<div className="mt-10 text-center w-full">
-								<h3 className="text-3xl font-semibold mb-4 px-6 flex items-center gap-x-2">
+							<div className=" mt-5 text-center w-full">
+								<h3 className="text-3xl py-10 font-semibold mb-4 px-6 flex items-center gap-x-2">
 									{" "}
 									<hr className="border border-gray-300 w-full h-px" /> or{" "}
 									<hr className="border border-gray-300 w-full h-px" />
@@ -142,7 +142,7 @@ const SignUp_Login = () => {
 								</div>
 							</div>
 
-							<div className="mt-10 text-center w-full">
+							<div className="mt-16 text-center w-full">
 								<p className="text-2xl font-medium normal-case">
 									{isSignUp ? (
 										<>
@@ -165,7 +165,7 @@ const SignUp_Login = () => {
 					</div>
 				</div>
 
-				<div className="md:flex hidden w-[55rem] h-full">
+				<div className="md:flex hidden w-[65rem] h-full">
 					<img
 						loading="lazy"
 						data-aos="fade-left"

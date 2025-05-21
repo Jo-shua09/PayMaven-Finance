@@ -41,7 +41,7 @@ export const signUp = async ({ email, password, navigate, setLoading }: AuthProp
 export const signIn = async ({ email, password, navigate, setLoading }: AuthProps) => {
 	setLoading(true);
 
-	// Basic validation before API call
+	// Basic validation
 	if (!password) {
 		toast.error("Please enter your password");
 		setLoading(false);
@@ -49,6 +49,7 @@ export const signIn = async ({ email, password, navigate, setLoading }: AuthProp
 	}
 
 	try {
+		// First check if email exists
 		const methods = await fetchSignInMethodsForEmail(auth, email);
 		if (methods.length === 0) {
 			toast.info("User not found. Please sign up first.");
@@ -56,16 +57,29 @@ export const signIn = async ({ email, password, navigate, setLoading }: AuthProp
 			return;
 		}
 
+		// Attempt sign-in
 		await signInWithEmailAndPassword(auth, email, password);
 		toast.success("Signed in successfully!");
 		setTimeout(() => navigate("/dashboard"), 1000);
 	} catch (error: unknown) {
-		handleError(error, navigate);
+		if (typeof error === "object" && error !== null && "code" in error) {
+			const errorCode = (error as { code: string }).code;
+
+			// Specific handling for wrong password
+			if (errorCode === "auth/wrong-password") {
+				toast.error("The password you entered is incorrect. Please try again.");
+				return;
+			}
+
+			// Handle other errors
+			handleError(error, navigate);
+		} else {
+			toast.error("An unexpected error occurred during sign-in");
+		}
 	} finally {
 		setLoading(false);
 	}
 };
-
 type GoogleAuthProps = {
 	navigate: (path: string) => void;
 	setLoading: (loading: boolean) => void;
