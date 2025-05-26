@@ -33,7 +33,7 @@ const SignUp_Login = () => {
 
 	return (
 		<div className="w-full mx-auto h-full max-h-screen mt-28 pb-20 border-blue-600">
-			<div className="w-full md:section pt-32 fixed bg-[#f8f8f8] h-full flex items-center justify-center gap-20 flex-wrap sm:flex-nowrap -mt-20 md:-mt-10">
+			<div className="w-full md:section pt-12 fixed bg-[#f8f8f8] h-full flex items-center justify-center gap-20 flex-wrap sm:flex-nowrap -mt-20 md:-mt-10">
 				<div className="md:w-1/3 md:mt-0 mt-14 w-[95%] h-full border-red-600">
 					<div data-aos="fade-right" className="w-full h-full">
 						<div className="flex flex-col items-center justify-center">
@@ -91,12 +91,12 @@ const SignUp_Login = () => {
 											className="bg-tertiary mt-1 mb-5 placeholder:normal-case focus:border border-secondary pl-5 text-[1.7rem] text-black font-semibold placeholder:text-gray-600 rounded-xl w-full h-[5.5rem]"
 										/>
 										{showPassword ? (
-											<RemoveRedEyeSharp
+											<VisibilityOff
 												className="!text-4xl absolute right-4 top-1/4 cursor-pointer hover:text-secondary"
 												onClick={togglePassword}
 											/>
 										) : (
-											<VisibilityOff
+											<RemoveRedEyeSharp
 												className="!text-4xl absolute right-4 top-1/4 cursor-pointer hover:text-secondary"
 												onClick={togglePassword}
 											/>
