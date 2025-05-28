@@ -1,10 +1,10 @@
 import { useState } from "react";
-import BusinessInfoForm from "../sections/activateAccount/BusinessInfoForm";
+import BusinessInfoForm from "../components/sections/activateAccount/BusinessInfoForm";
 import ActivateAccountStepper from "../components/ui/ActivateAccountStepper";
-import PersonalInfoForm from "../sections/activateAccount/PersonalInfoForm";
-import BankAccountForm from "../sections/activateAccount/BankAccountForm";
-import SecureAccountForm from "../sections/activateAccount/SecureAccountForm";
-import ReviewInfo from "../sections/activateAccount/ReviewInfo";
+import PersonalInfoForm from "../components/sections/activateAccount/PersonalInfoForm";
+import BankAccountForm from "../components/sections/activateAccount/BankAccountForm";
+import SecureAccountForm from "../components/sections/activateAccount/SecureAccountForm";
+import ReviewInfo from "../components/sections/activateAccount/ReviewInfo";
 import ActivateAccountFormNavigation from "../components/ui/ActivateAccountFormNavigation";
 import { toast } from "react-toastify";
 // import { validatePersonalInfo } from "../utils/Validation";

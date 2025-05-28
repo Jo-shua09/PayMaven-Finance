@@ -1,5 +1,5 @@
 import monitorImage from "/src/assets/images/monitor_hero.jpg";
-import SubSectionsLayout from "../../layouts/SubSectionsLayout";
+import SubSectionsLayout from "../../../layouts/SubSectionsLayout";
 
 const Monitor = () => {
 	return (

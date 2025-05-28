@@ -1,5 +1,5 @@
 import manageImage from "/src/assets/images/manage_hero.jpg";
-import SubSectionsLayout from "../../layouts/SubSectionsLayout";
+import SubSectionsLayout from "../../../layouts/SubSectionsLayout";
 
 const Manage = () => {
 	return (

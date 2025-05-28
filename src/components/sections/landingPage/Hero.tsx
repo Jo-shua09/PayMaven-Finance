@@ -1,4 +1,4 @@
-import { Button2 } from "../../components/ui/Button";
+import { Button2 } from "../../ui/Button";
 import hero from "/src/assets/images/hero_big.png";
 import heroSmall from "/src/assets/images/hero_small.png";
 

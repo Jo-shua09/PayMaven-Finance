@@ -1,5 +1,5 @@
 import { CheckCircle, CloseRounded } from "@mui/icons-material";
-import { Prices } from "../../assets/dummyData";
+import { Prices } from "../../../assets/dummyData";
 import { Link } from "react-router-dom";
 
 const Pricing = () => {

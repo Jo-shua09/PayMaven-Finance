@@ -1,8 +1,8 @@
-import Banner from "../sections/landingPage/Banner";
-import Hero from "../sections/landingPage/Hero";
-import Manage from "../sections/landingPage/Manage";
-import Monitor from "../sections/landingPage/Monitor";
-import Pricing from "../sections/landingPage/Pricing";
+import Banner from "../components/sections/landingPage/Banner";
+import Hero from "../components/sections/landingPage/Hero";
+import Manage from "../components/sections/landingPage/Manage";
+import Monitor from "../components/sections/landingPage/Monitor";
+import Pricing from "../components/sections/landingPage/Pricing";
 
 const landingPage = () => {
 	return (

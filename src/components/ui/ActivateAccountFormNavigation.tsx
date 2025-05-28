@@ -5,7 +5,7 @@ import {
 	validateBankAccount,
 	validateBusinessInfo,
 	validatePersonalInfo,
-	validateSecurityInfo,
+	// validateSecurityInfo,
 } from "../../utils/Validation";
 
 type BusinessInfo = {
@@ -86,15 +86,15 @@ const ActivateAccountFormNavigation: React.FC<Props> = ({
 				errors = validateBankAccount(formData, cardType);
 				break;
 			case 4:
-				errors = validateSecurityInfo(formData);
+				// errors = validateSecurityInfo(formData, checkedAddress);
 				break;
 			default:
 				break;
 		}
 
 		if (errors.length > 0) {
-			// toast.error("Please fill all required fields before continuing");
-			errors.forEach((error) => toast.error(error));
+			toast.error("Please fill all required fields before continuing");
+			// errors.forEach((error) => toast.error(error));
 			return false;
 		}
 		return true;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ActivateAccountHeader from "../../layouts/ActivateAccountHeader";
+import ActivateAccountHeader from "../../../layouts/ActivateAccountHeader";
 import auth from "/src/assets/images/auth.png";
 import { useNavigate } from "react-router-dom";
 
